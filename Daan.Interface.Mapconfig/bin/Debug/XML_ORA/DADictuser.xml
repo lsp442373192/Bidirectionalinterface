@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="Daan.Interface.Entity" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ibatis.apache.org/mapping">
+  <alias>
+    <typeAlias alias="DADictuser"  type="Daan.Interface.Entity.DADictuser,Daan.Interface.Entity" />
+  </alias>
+  <resultMaps>
+    <resultMap id="DADictuserResult" class="Daan.Interface.Entity.DADictuser">
+      <result property="Dictuserid" column="DICTUSERID" />
+      <result property="Usercode" column="USERCODE" />
+      <result property="Username" column="USERNAME" />
+      <result property="Password" column="PASSWORD" />
+      <result property="Remark" column="REMARK" />
+      <result property="Isactive" column="ISACTIVE"/>
+      <result property="Createdate" column="CREATEDATE" />
+      <result property="Lastupdate" column="LASTUPDATE" />
+    </resultMap>
+  </resultMaps>
+  <statements>
+
+    <select id="SelectDADictuser" parameterClass="string" resultMap="DADictuserResult">
+      SELECT DICTUSERID AS Dictuserid,USERCODE AS Usercode,USERNAME AS Username,PASSWORD AS Password,REMARK AS Remark,ISACTIVE AS Isactive,CREATEDATE AS Createdate,Lastupdate as LASTUPDATE
+      FROM DA_DICTUSER where 1=1
+      <isNotEmpty prepend="and" property="strKey">
+        (Usercode like '%$strKey$%' or Username like  '%$strKey$%' or Remark like  '%$strKey$%')
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="Dictuserid">
+        Dictuserid = #Dictuserid#
+      </isNotEmpty>
+    </select>
+    <!--按Usercode查询详细信息 fenghp-->
+    <select id="GetDADictuserInfoByCode" parameterClass="DADictuser" resultMap="DADictuserResult">
+      SELECT DICTUSERID AS Dictuserid,USERCODE AS Usercode,USERNAME AS Username,PASSWORD AS Password,REMARK AS Remark,ISACTIVE AS Isactive,CREATEDATE AS Createdate,LASTUPDATE as Lastupdate
+      from da_dictuser WHERE Usercode=#Usercode#
+    </select>
+    <insert id="InsertDADictuser" parameterClass="DADictuser">
+      INSERT INTO DA_DICTUSER
+      (USERCODE,USERNAME,PASSWORD,REMARK,ISACTIVE,CREATEDATE,LASTUPDATE)
+      VALUES(#Usercode#,#Username#,#Password#,#Remark#,#Isactive#,#Createdate#,getdate())
+    </insert>
+    <update id="UpdateDADictuser" parameterClass="DADictuser">
+      UPDATE DA_DICTUSER
+      SET USERCODE=#Usercode#,USERNAME=#Username#,PASSWORD=#Password#,REMARK=#Remark#,ISACTIVE=#Isactive#,CREATEDATE=#Createdate#,LASTUPDATE=getdate()
+      WHERE DICTUSERID = #Dictuserid#
+    </update>
+    <delete id="DeleteDADictuser" parameterClass="string">
+      DELETE FROM DA_DICTUSER
+      WHERE DICTUSERID = #value#
+    </delete>
+  </statements>
+</sqlMap>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="Daan.Interface.Entity" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ibatis.apache.org/mapping">
+  <alias>
+    <typeAlias alias="DAReport"  type="Daan.Interface.Entity.DAReport,Daan.Interface.Entity" />
+  </alias>
+  <resultMaps>
+    <resultMap id="DAReportResult" class="Daan.Interface.Entity.DAReport">
+      <result property="Reportid" column="REPORTID" />
+      <result property="Requestcode" column="REQUESTCODE" />
+      <result property="Hospsamplenumber" column="HOSPSAMPLENUMBER" />
+      <result property="Hospsampleid" column="HOSPSAMPLEID" />
+      <result property="Reportdata" column="REPORTDATA" />
+      <result property="Createdate" column="CREATEDATE" />
+      <result property="Printcount" column="PRINTCOUNT" />
+      <result property="Printtime" column="PRINTTIME" />
+      <result property="Reporttype" column="REPORTTYPE" />
+      <result property="Status" column="STATUS" />
+      <result property="Papersize" column="PAPERSIZE" />
+    </resultMap>
+  </resultMaps>
+  <statements>
+    <!--根据达安条码获得报告单zhangwei-->
+    <select id="SelectDAReportByRequestcode" parameterClass="Hashtable" resultMap="DAReportResult">
+      SELECT REPORTID AS Reportid,REQUESTCODE AS Requestcode,HOSPSAMPLENUMBER AS Hospsamplenumber,HOSPSAMPLEID AS Hospsampleid,REPORTDATA AS Reportdata,CREATEDATE AS Createdate,PRINTCOUNT AS Printcount,PRINTTIME AS Printtime,REPORTTYPE AS Reporttype,STATUS AS Status,PAPERSIZE AS Papersize
+      FROM DA_REPORT where 1 = 1
+      <isNotEmpty prepend="and" property="Requestcode">
+        Requestcode = '$Requestcode$'
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="Hospsampleid">
+        Hospsampleid = '$Hospsampleid$'
+      </isNotEmpty>
+    </select>
+    <select id="SelectDAReport" parameterClass="string" resultMap="DAReportResult">
+      SELECT REPORTID AS Reportid,REQUESTCODE AS Requestcode,HOSPSAMPLENUMBER AS Hospsamplenumber,HOSPSAMPLEID AS Hospsampleid,REPORTDATA AS Reportdata,CREATEDATE AS Createdate,PRINTCOUNT AS Printcount,PRINTTIME AS Printtime,REPORTTYPE AS Reporttype,STATUS AS Status,PAPERSIZE AS Papersize
+      FROM DA_REPORT
+    </select>
+    <insert id="InsertDAReport" parameterClass="DAReport">
+      INSERT INTO DA_REPORT
+      (REPORTID,REQUESTCODE,HOSPSAMPLENUMBER,HOSPSAMPLEID,REPORTDATA,CREATEDATE,PRINTCOUNT,PRINTTIME,REPORTTYPE,STATUS,PAPERSIZE)
+      VALUES(#Reportid#,#Requestcode#,#Hospsamplenumber#,#Hospsampleid#,#Reportdata#,sysdate,#Printcount#,#Printtime#,#Reporttype#,#Status#,#Papersize#)
+    </insert>
+    <update id="UpdateDAReport" parameterClass="DAReport">
+      UPDATE DA_REPORT
+      SET REPORTID=#Reportid#,REQUESTCODE=#Requestcode#,HOSPSAMPLENUMBER=#Hospsamplenumber#,HOSPSAMPLEID=#Hospsampleid#,REPORTDATA=#Reportdata#,CREATEDATE=#Createdate#,PRINTCOUNT=#Printcount#,PRINTTIME=#Printtime#,REPORTTYPE=#Reporttype#,STATUS=#Status#,PAPERSIZE=#Papersize#
+    </update>
+    <delete id="DeleteDAReportByRequestCode" parameterClass="string">
+      DELETE FROM DA_REPORT  WHERE REQUESTCODE=#Requestcode#
+    </delete>
+  </statements>
+</sqlMap>

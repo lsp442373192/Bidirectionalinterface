@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="Daan.Interface.Entity" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ibatis.apache.org/mapping">
+  <alias>
+    <typeAlias alias="TableID"  type="Daan.Interface.Entity.TableID, Daan.Interface.Entity" />
+  </alias>
+
+  <resultMaps>
+
+
+
+  </resultMaps>
+
+
+
+  <!-- ==========================================
+        MAPPED STATEMENTS 
+    ============================================= 
+    -->
+  <statements>
+    <!-- 得到当前服务器时间 -->
+    <select id="Common.GetServerTime" parameterClass="string" >
+      select * from da_dicttestitem
+      <!--  select sysdate from dual where barcode=#value#-->
+    </select>
+
+    <!--获Oracle序列-->
+    <select id="Common.GetSeqID" parameterClass="string" resultClass="int">
+      SELECT $vaule$.NEXTVAL FROM DUAL
+    </select>
+
+    <select id="Common.GetID" parameterClass="string" resultClass="int">
+      SELECT idvalue from da_dictMaxID where tablename=#value#
+    </select>
+
+    <update id="Common.UpdateID" parameterClass="TableID">
+      update da_dictMaxID
+      set idValue = #NextId# where tablename = #Name# and idValue=#NextId# - 1
+
+    </update>
+  </statements>
+
+</sqlMap>

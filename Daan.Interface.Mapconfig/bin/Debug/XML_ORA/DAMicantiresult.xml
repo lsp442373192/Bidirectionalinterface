@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="Daan.Interface.Entity" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ibatis.apache.org/mapping">
+  <alias>
+    <typeAlias alias="DAMicantiresult"  type="Daan.Interface.Entity.DAMicantiresult,Daan.Interface.Entity" />
+  </alias>
+  <resultMaps>
+    <resultMap id="DAMicantiresultResult" class="Daan.Interface.Entity.DAMicantiresult">
+      <result property="Micantiresultid" column="MICANTIRESULTID" type="decimal" dbType="Real"/>
+      <result property="Hospsamplenumber" column="HOSPSAMPLENUMBER" type="string" dbType="varchar"/>
+      <result property="Hospsampleid" column="HOSPSAMPLEID" type="string" dbType="varchar"/>
+      <result property="Requestcode" column="REQUESTCODE" type="string" dbType="varchar"/>
+      <result property="Micorgresultid" column="MICORGRESULTID" type="decimal" dbType="Real"/>
+      <result property="Anticode" column="ANTICODE" type="string" dbType="varchar"/>
+      <result property="Antiname" column="ANTINAME" type="string" dbType="varchar"/>
+      <result property="Engantiname" column="ENGANTINAME" type="string" dbType="varchar"/>
+      <result property="Displayorder" column="DISPLAYORDER" type="decimal" dbType="Real"/>
+      <result property="Resultvalue" column="RESULTVALUE" type="string" dbType="varchar"/>
+      <result property="Testresult" column="TESTRESULT" type="string" dbType="varchar"/>
+      <result property="Srange" column="SRANGE" type="decimal" dbType="Real"/> 
+      <result property="Rrange" column="RRANGE" type="decimal" dbType="Real"/>
+      <result property="Createdate" column="CREATEDATE" type="DateTime" dbType="DateTime"/>
+    </resultMap>
+  </resultMaps>
+  <statements>
+
+    <select id="SelectDAMicantiresult" parameterClass="string" resultMap="DAMicantiresultResult">
+      SELECT MICANTIRESULTID AS Micantiresultid,HOSPSAMPLENUMBER AS Hospsamplenumber,HOSPSAMPLEID AS Hospsampleid,REQUESTCODE AS Requestcode,MICORGRESULTID AS Micorgresultid,ANTICODE AS Anticode,ANTINAME AS Antiname,ENGANTINAME AS Engantiname,DISPLAYORDER AS Displayorder,RESULTVALUE AS Resultvalue,TESTRESULT AS Testresult,SRANGE AS Srange,RRANGE AS Rrange,CREATEDATE AS Createdate
+      FROM DA_MICANTIRESULT
+      <dynamic prepend="WHERE">
+        <isParameterPresent>
+          MICANTIRESULTID = #value#
+        </isParameterPresent>
+      </dynamic>
+    </select>
+    <insert id="InsertDAMicantiresult" parameterClass="DAMicantiresult">
+      INSERT INTO DA_MICANTIRESULT
+      (MICANTIRESULTID,HOSPSAMPLENUMBER,HOSPSAMPLEID,REQUESTCODE,MICORGRESULTID,ANTICODE,ANTINAME,ENGANTINAME,DISPLAYORDER,RESULTVALUE,TESTRESULT,SRANGE,RRANGE,CREATEDATE)
+      VALUES(SEQ_DA_MICANTIRESULT.Nextval,#Hospsamplenumber#,#Hospsampleid#,#Requestcode#,#Micorgresultid#,#Anticode#,#Antiname#,#Engantiname#,#Displayorder#,#Resultvalue#,#Testresult#,#Srange#,#Rrange#,sysdate)
+    </insert>
+    <update id="UpdateDAMicantiresult" parameterClass="DAMicantiresult">
+      UPDATE DA_MICANTIRESULT
+      SET MICANTIRESULTID=#Micantiresultid#,HOSPSAMPLENUMBER=#Hospsamplenumber#,HOSPSAMPLEID=#Hospsampleid#,REQUESTCODE=#Requestcode#,MICORGRESULTID=#Micorgresultid#,ANTICODE=#Anticode#,ANTINAME=#Antiname#,ENGANTINAME=#Engantiname#,DISPLAYORDER=#Displayorder#,RESULTVALUE=#Resultvalue#,TESTRESULT=#Testresult#,SRANGE=#Srange#,RRANGE=#Rrange#,CREATEDATE=#Createdate#
+      WHERE MICANTIRESULTID = #Micantiresultid#
+    </update>
+    <delete id="DeleteDAMicantiresultByRequestCode" parameterClass="string">
+      DELETE FROM DA_MICANTIRESULT
+      WHERE REQUESTCODE=#Requestcode#
+    </delete>
+  </statements>
+</sqlMap>

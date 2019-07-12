@@ -1,0 +1,1 @@
+﻿alter table da_dicttestitem add  zhouy varchar(50) NULL

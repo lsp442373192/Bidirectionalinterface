@@ -1,0 +1,31 @@
+﻿<database>
+	<!--<databasetype>0</databasetype>
+	<userid>lisdev</userid>
+	<password>dev</password>
+	<dataname>limstest</dataname>
+	<datasource></datasource>-->
+  
+  
+  
+  
+ <!-- <databasetype>0</databasetype>
+  <userid>lisuat</userid>
+  <password>test</password>
+  <dataname>lis241</dataname>
+  <datasource></datasource> 241 测试数据-->
+
+
+
+  <databasetype>2</databasetype>
+  <userid>ycbl</userid>
+  <password>daandev</password>
+  <dataname>ycbl180726</dataname>
+  <datasource>192.168.14.41</datasource>
+
+
+  <!--<databasetype>1</databasetype>
+  <userid>sa</userid>
+  <password>123456</password>
+  <dataname>dklisdj1</dataname>
+  <datasource>192.168.14.31</datasource>-->
+</database>

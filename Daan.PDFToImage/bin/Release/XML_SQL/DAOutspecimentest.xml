@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="Daan.Interface.Entity" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ibatis.apache.org/mapping">
+  <alias>
+    <typeAlias alias="DAOutspecimentest"  type="Daan.Interface.Entity.DAOutspecimentest,Daan.Interface.Entity" />
+  </alias>
+  <resultMaps>
+    <resultMap id="DAOutspecimentestResult" class="Daan.Interface.Entity.DAOutspecimentest">
+      <result property="Outspecimentestid" column="OUTSPECIMENTESTID" type="single" dbType="Real"/>
+      <result property="Requestcode" column="REQUESTCODE" type="string" dbType="varchar"/>
+      <result property="Hospsampleid" column="HOSPSAMPLEID" type="string" dbType="varchar"/>
+      <result property="Hospsamplenumber" column="HOSPSAMPLENUMBER" type="string" dbType="varchar"/>
+      <result property="Customertestcode" column="CUSTOMERTESTCODE" type="string" dbType="varchar"/>
+      <result property="Customertestname" column="CUSTOMERTESTNAME" type="string" dbType="varchar"/>
+      <result property="Datestcode" column="DATESTCODE" type="string" dbType="varchar"/>
+      <result property="Datestname" column="DATESTNAME" type="string" dbType="varchar"/>
+      <result property="Createdate" column="CREATEDATE" type="DateTime" dbType="DateTime"/>
+      <result property="Status" column="STATUS" type="string" dbType="varchar"/>
+      <result property="SampleType" column="SAMPLETYPE" type="string" dbType="varchar"/>
+    </resultMap>
+  </resultMaps>
+  <statements>
+
+    <select id="SelectDAOutspecimentest" parameterClass="string" resultMap="DAOutspecimentestResult">
+      SELECT OUTSPECIMENTESTID AS Outspecimentestid,REQUESTCODE AS Requestcode,HOSPSAMPLEID AS Hospsampleid,HOSPSAMPLENUMBER AS Hospsamplenumber,CUSTOMERTESTCODE AS Customertestcode,CUSTOMERTESTNAME AS Customertestname,DATESTCODE AS Datestcode,DATESTNAME AS Datestname,CREATEDATE AS Createdate,STATUS AS Status,SAMPLETYPE AS SampleType
+      FROM DA_OUTSPECIMENTEST where 1 = 1
+      <isNotEmpty prepend="and" property="Requestcode">
+        Requestcode = '$Requestcode$'
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="Datestcode">
+        Datestcode = '$Datestcode$'
+      </isNotEmpty>
+    </select>
+    <!--新增插入 zhangwei-->
+    <insert id="Da.InsertDAOutspecimentest" parameterClass="DAOutspecimentest">
+      INSERT INTO DA_OUTSPECIMENTEST
+      (REQUESTCODE,HOSPSAMPLEID,HOSPSAMPLENUMBER,CUSTOMERTESTCODE,CUSTOMERTESTNAME,DATESTCODE,DATESTNAME,CREATEDATE,STATUS,SAMPLETYPE)
+      VALUES(#Requestcode#,#Hospsampleid#,#Hospsamplenumber#,#Customertestcode#,#Customertestname#,#Datestcode#,#Datestname#,getdate(),'0',#SampleType#)
+    </insert>
+    <update id="UpdateDAOutspecimentest" parameterClass="DAOutspecimentest">
+      UPDATE DA_OUTSPECIMENTEST
+      SET REQUESTCODE=#Requestcode#,HOSPSAMPLEID=#Hospsampleid#,HOSPSAMPLENUMBER=#Hospsamplenumber#,CUSTOMERTESTCODE=#Customertestcode#,CUSTOMERTESTNAME=#Customertestname#,DATESTCODE=#Datestcode#,DATESTNAME=#Datestname#,CREATEDATE=#Createdate#
+      WHERE OUTSPECIMENTESTID = #Outspecimentestid#
+    </update>
+    <!--只取组合状态，不取单项结果 zhouy 达安可能一对多医院项目 用in -->
+    <update id="UpdateDAOutspecimentestStatus" parameterClass="DAOutspecimentest">
+      UPDATE DA_OUTSPECIMENTEST
+      SET STATUS =#status#,
+      WHERE  REQUESTCODE=#Requestcode#
+      <isNotNull prepend="and" property="Datestcode">
+        CUSTOMERTESTCODE in (select customertestcode from da_testmap dt where dt.datestcode=#Datestcode#)
+      </isNotNull>
+    </update>
+    <!-- 根据达安条码删除外送标本项目表 zhangwei mondify by yhl 2014-10-27 -->
+    <delete id="DeleteDAOutspecimentest" parameterClass="string">
+      DELETE FROM DA_OUTSPECIMENTEST
+      WHERE Requestcode in (#value#)
+    </delete>
+
+    <!--查询是否一个条码接收结果完毕 组合模式 zhouy-->
+    <select id="SelectIsFullByRequestCode" parameterClass="string">
+      select (case (count(requestcode)-sum(convert(int,r.status))) when 0 then 1 else 0 end) istrue
+      from DA_OUTSPECIMENTEST r 
+      where r.requestcode=#value#
+    </select>
+
+    <!--查询要发送的代码 组合模式  zhouy-->
+    <select id="SelectSendGruopCodeByRequestCode" parameterClass="string">
+      select a.customertestcode,a.customertestname,b.datestcode
+      from da_outspecimentest a
+      left join da_testmap b on a.customertestcode=b.customertestcode
+      where requestcode=#value#
+    </select>
+  </statements>
+</sqlMap>

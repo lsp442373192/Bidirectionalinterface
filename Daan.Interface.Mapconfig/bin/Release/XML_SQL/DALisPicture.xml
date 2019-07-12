@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="Daan.Interface.Entity" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ibatis.apache.org/mapping">
+  <alias>
+    <typeAlias alias="DALisPicture"  type="Daan.Interface.Entity.DALisPicture,Daan.Interface.Entity" />
+  </alias>
+  <resultMaps>
+    <resultMap id="DALisPictureResult" class="Daan.Interface.Entity.DALispicture">
+      <result property="Lis_Pictureid" column="LIS_PICTUREID" />
+      <result property="Requestcode" column="REQUESTCODE" />
+      <result property="Hospsamplenumber" column="HOSPSAMPLENUMBER" />
+      <result property="Hospsampleid" column="HOSPSAMPLEID" />
+      <result property="Indexno" column="INDEXNO" />
+      <result property="Description" column="DESCRIPTION" />
+      <result property="Imagedata" column="IMAGEDATA" />
+      <result property="Createdate" column="CREATEDATE" />
+    </resultMap>
+  </resultMaps>
+  <statements>
+
+    <select id="SelectDALisPicture" parameterClass="string" resultMap="DALisPictureResult">
+      SELECT LIS_PICTUREID AS Lis_Pictureid,REQUESTCODE AS Requestcode,HOSPSAMPLENUMBER AS Hospsamplenumber,HOSPSAMPLEID AS Hospsampleid,INDEXNO AS Indexno,DESCRIPTION AS Description,IMAGEDATA AS Imagedata,CREATEDATE AS Createdate
+      FROM DA_LIS_PICTURE
+      <dynamic prepend="WHERE">
+        <isParameterPresent>
+          LIS_PICTUREID = #value#
+        </isParameterPresent>
+      </dynamic>
+    </select>
+    <insert id="InsertDALisPicture" parameterClass="DALisPicture">
+      INSERT INTO DA_LIS_PICTURE
+      (REQUESTCODE,HOSPSAMPLENUMBER,HOSPSAMPLEID,INDEXNO,DESCRIPTION,IMAGEDATA,CREATEDATE)
+      VALUES(#Requestcode#,#Hospsamplenumber#,#Hospsampleid#,#Indexno#,#Description#,#Imagedata#,getdate())
+    </insert>
+    <update id="UpdateDALisPicture" parameterClass="DALisPicture">
+      UPDATE DA_LIS_PICTURE
+      SET REQUESTCODE=#Requestcode#,HOSPSAMPLENUMBER=#Hospsamplenumber#,HOSPSAMPLEID=#Hospsampleid#,INDEXNO=#Indexno#,DESCRIPTION=#Description#,IMAGEDATA=#Imagedata#
+      WHERE LIS_PICTUREID = #Lis_Pictureid#
+    </update>
+    <delete id="DeleteDALisPictureByRequestcode" parameterClass="string">
+      DELETE FROM DA_LIS_PICTURE
+      WHERE REQUESTCODE=#Requestcode#
+    </delete>
+  </statements>
+</sqlMap>

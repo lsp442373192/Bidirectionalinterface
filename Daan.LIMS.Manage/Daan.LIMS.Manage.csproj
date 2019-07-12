@@ -1,0 +1,546 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{2C3DB7FC-6EC9-4D19-AB58-F2E8F6F345AE}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Daan.LIMS.Manage</RootNamespace>
+    <AssemblyName>Daan.LIMS.Manage</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>lims.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Aspose.Cells">
+      <HintPath>..\lib\Aspose.Cells.dll</HintPath>
+    </Reference>
+    <Reference Include="ChineseConverter">
+      <HintPath>..\lib\ChineseConverter.dll</HintPath>
+    </Reference>
+    <Reference Include="ChineseConverterVSIP">
+      <HintPath>..\lib\ChineseConverterVSIP.dll</HintPath>
+    </Reference>
+    <Reference Include="ChnCharInfo">
+      <HintPath>..\lib\ChnCharInfo.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Data.v11.2, Version=11.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\DevExpress.Data.v11.2.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Utils.v11.2, Version=11.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\DevExpress.Utils.v11.2.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraEditors.v11.2, Version=11.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\DevExpress.XtraEditors.v11.2.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraGrid.v11.2, Version=11.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\DevExpress.XtraGrid.v11.2.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="FastReport, Version=1.7.1.0, Culture=neutral, PublicKeyToken=db7e5ce63278458c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\FastReport.dll</HintPath>
+    </Reference>
+    <Reference Include="IBatisNet.Common, Version=1.6.2.0, Culture=neutral, PublicKeyToken=ed781d9fc396c6ca, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\IBatisNet.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="IBatisNet.DataMapper, Version=1.6.2.0, Culture=neutral, PublicKeyToken=ed781d9fc396c6ca, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\IBatisNet.DataMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp">
+      <HintPath>..\lib\itextsharp.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WeifenLuo.WinFormsUI.Docking, Version=2.5.0.30003, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\WeifenLuo.WinFormsUI.Docking.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CommonFuncLibClient.cs" />
+    <Compile Include="DataExport.cs" />
+    <Compile Include="FrmBase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmBase.Designer.cs">
+      <DependentUpon>FrmBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmDaanItem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmDaanItem.designer.cs">
+      <DependentUpon>FrmDaanItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmDBConfiguration.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmDBConfiguration.designer.cs">
+      <DependentUpon>FrmDBConfiguration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmDockingService.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmDockingService.designer.cs">
+      <DependentUpon>FrmDockingService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmErrorLog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmErrorLog.designer.cs">
+      <DependentUpon>FrmErrorLog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmHospitalItem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmHospitalItem.designer.cs">
+      <DependentUpon>FrmHospitalItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmItemHoapitalAndDaanImportError.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmItemHoapitalAndDaanImportError.Designer.cs">
+      <DependentUpon>FrmItemHoapitalAndDaanImportError.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmItemHospitalAndDaan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmItemHospitalAndDaan.designer.cs">
+      <DependentUpon>FrmItemHospitalAndDaan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmItemHospitalAndDaanSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmItemHospitalAndDaanSetting.Designer.cs">
+      <DependentUpon>FrmItemHospitalAndDaanSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmLogon.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmLogon.Designer.cs">
+      <DependentUpon>FrmLogon.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmLogsDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmLogsDetails.designer.cs">
+      <DependentUpon>FrmLogsDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmMain.designer.cs">
+      <DependentUpon>FrmMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmMainRight.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmMainRight.designer.cs">
+      <DependentUpon>FrmMainRight.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmModifyPwd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmModifyPwd.designer.cs">
+      <DependentUpon>FrmModifyPwd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmOutOrder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmOutOrder.designer.cs">
+      <DependentUpon>FrmOutOrder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmOutOrdersDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmOutOrdersDetails.designer.cs">
+      <DependentUpon>FrmOutOrdersDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmParaConfiguration.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmParaConfiguration.designer.cs">
+      <DependentUpon>FrmParaConfiguration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmProgressBar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmProgressBar.Designer.cs">
+      <DependentUpon>FrmProgressBar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmReport.designer.cs">
+      <DependentUpon>FrmReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSampleInput.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSampleInput.Designer.cs">
+      <DependentUpon>FrmSampleInput.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSendCheckOrder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSendCheckOrder.designer.cs">
+      <DependentUpon>FrmSendCheckOrder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSendString.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSendString.Designer.cs">
+      <DependentUpon>FrmSendString.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSpecSeach.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSpecSeach.designer.cs">
+      <DependentUpon>FrmSpecSeach.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSystemUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSystemUser.designer.cs">
+      <DependentUpon>FrmSystemUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmTestResult.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmTestResult.designer.cs">
+      <DependentUpon>FrmTestResult.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmUserAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmUserAdd.designer.cs">
+      <DependentUpon>FrmUserAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmUserGroupList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmUserGroupList.designer.cs">
+      <DependentUpon>FrmUserGroupList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="FrmItemHospitalAndDaanSetting2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmItemHospitalAndDaanSetting2.Designer.cs">
+      <DependentUpon>FrmItemHospitalAndDaanSetting2.cs</DependentUpon>
+    </Compile>
+    <Content Include="edition.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="lims.ico" />
+    <Content Include="VersionSql\ORA\1.0.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="VersionSql\ORA\2.0.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="VersionSql\ORA\3.0.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="VersionSql\ORA\3.1.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="VersionSql\ORA\3.2.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="VersionSql\ORA\3.3.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="VersionSql\SQL\1.0.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="VersionSql\SQL\2.0.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="VersionSql\SQL\3.0.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="VersionSql\SQL\3.1.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="VersionSql\SQL\3.2.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="VersionSql\SQL\3.3.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <EmbeddedResource Include="FrmBase.resx">
+      <DependentUpon>FrmBase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmDaanItem.resx">
+      <DependentUpon>FrmDaanItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmDBConfiguration.resx">
+      <DependentUpon>FrmDBConfiguration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmDockingService.resx">
+      <DependentUpon>FrmDockingService.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmErrorLog.resx">
+      <DependentUpon>FrmErrorLog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmHospitalItem.resx">
+      <DependentUpon>FrmHospitalItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmItemHoapitalAndDaanImportError.resx">
+      <DependentUpon>FrmItemHoapitalAndDaanImportError.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmItemHospitalAndDaan.resx">
+      <DependentUpon>FrmItemHospitalAndDaan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmItemHospitalAndDaanSetting.resx">
+      <DependentUpon>FrmItemHospitalAndDaanSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmLogon.resx">
+      <DependentUpon>FrmLogon.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmLogsDetails.resx">
+      <DependentUpon>FrmLogsDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmMain.resx">
+      <DependentUpon>FrmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmMainRight.resx">
+      <DependentUpon>FrmMainRight.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmModifyPwd.resx">
+      <DependentUpon>FrmModifyPwd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmOutOrder.resx">
+      <DependentUpon>FrmOutOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmOutOrdersDetails.resx">
+      <DependentUpon>FrmOutOrdersDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmParaConfiguration.resx">
+      <DependentUpon>FrmParaConfiguration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmProgressBar.resx">
+      <DependentUpon>FrmProgressBar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmReport.resx">
+      <DependentUpon>FrmReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSampleInput.resx">
+      <DependentUpon>FrmSampleInput.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSendCheckOrder.resx">
+      <DependentUpon>FrmSendCheckOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSendString.resx">
+      <DependentUpon>FrmSendString.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSpecSeach.resx">
+      <DependentUpon>FrmSpecSeach.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSystemUser.resx">
+      <DependentUpon>FrmSystemUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmTestResult.resx">
+      <DependentUpon>FrmTestResult.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmUserAdd.resx">
+      <DependentUpon>FrmUserAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmUserGroupList.resx">
+      <DependentUpon>FrmUserGroupList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="FrmItemHospitalAndDaanSetting2.resx">
+      <DependentUpon>FrmItemHospitalAndDaanSetting2.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="app.config" />
+    <Content Include="DatabaseViewConfiguration.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="LISMap.config">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="importtemplate\项目对照模版.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Properties\DataSources\Daan.Interface.Entity.DADicttestitem.datasource" />
+    <None Include="Properties\DataSources\Daan.Interface.Entity.DAOperationlog.datasource" />
+    <None Include="Properties\DataSources\Daan.Interface.Entity.DAOutspecimen.datasource" />
+    <None Include="Properties\DataSources\Daan.Interface.Entity.DaResult.datasource" />
+    <None Include="Properties\DataSources\Daan.Interface.Entity.VDaLisrequest.datasource" />
+    <None Include="Properties\DataSources\Daan.Interface.Entity.VDaLisrequesttest.datasource" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <None Include="providers.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="report\HPVRep.frx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\daan.control\Daan.control.csproj">
+      <Project>{2712C884-6658-4267-9518-7DA35DB550C0}</Project>
+      <Name>Daan.control</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Daan.Interface.BLL\Daan.Interface.BLL.csproj">
+      <Project>{23805C3C-D9B9-4EF8-A11A-DB614F900F80}</Project>
+      <Name>Daan.Interface.BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Daan.Interface.Dao\Daan.Interface.Dao.csproj">
+      <Project>{621AB555-4D5B-429D-A15E-546D8A5F2832}</Project>
+      <Name>Daan.Interface.Dao</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Daan.Interface.Entity\Daan.Interface.Entity.csproj">
+      <Project>{688C4832-5352-4D28-883D-A8E3283C28E4}</Project>
+      <Name>Daan.Interface.Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Daan.Interface.Mapconfig\Daan.Interface.Mapconfig.csproj">
+      <Project>{8CBBC5B7-C78A-4ED5-B847-4ED9B66632DF}</Project>
+      <Name>Daan.Interface.Mapconfig</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Daan.Interface.Util\Daan.Interface.Util.csproj">
+      <Project>{9BCB4A92-D876-4C5A-B83B-0663D0CB5BBD}</Project>
+      <Name>Daan.Interface.Util</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DatabaseConfiguration.xml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 %28x86 和 x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="AcroPDFLib">
+      <Guid>{05BFD3F1-6319-4F30-B752-C7A22889BCC4}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="AxAcroPDFLib">
+      <Guid>{05BFD3F1-6319-4F30-B752-C7A22889BCC4}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>aximp</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

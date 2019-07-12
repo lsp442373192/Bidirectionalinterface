@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="Daan.Interface.Entity" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ibatis.apache.org/mapping">
+  <alias>
+    <typeAlias alias="DAAN_LIS_REPORT"  type="Daan.Interface.Entity.DAAN_LIS_REPORT,Daan.Interface.Entity" />
+  </alias>
+  <resultMaps>
+    <resultMap id="DAAN_LIS_REPORTResult" class="Daan.Interface.Entity.DAAN_LIS_REPORT">
+      <result property="dAAN_ID" column="DAAN_ID" />
+      <result property="dAAN_BAR_CODE" column="DAAN_BAR_CODE" />
+      <result property="dAAN_JPG" column="DAAN_JPG" />
+      <result property="dAAN_STATUS" column="DAAN_STATUS" />
+    </resultMap>
+  </resultMaps>
+  <statements>   
+    <insert id="InsertDAAN_LIS_REPORT" parameterClass="DAAN_LIS_REPORT">
+      INSERT INTO DAAN_LIS_REPORT
+      (DAAN_ID,DAAN_BAR_CODE,DAAN_JPG,DAAN_STATUS)
+      VALUES(#dAAN_ID#,#dAAN_BAR_CODE#,#dAAN_JPG#,#dAAN_STATUS#)
+    </insert>
+  </statements>
+</sqlMap>

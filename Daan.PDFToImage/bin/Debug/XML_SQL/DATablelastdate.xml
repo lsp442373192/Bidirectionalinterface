@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="Daan.Interface.Entity" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ibatis.apache.org/mapping">
+  <alias>
+    <typeAlias alias="DATablelastdate"  type="Daan.Interface.Entity.DATablelastdate,Daan.Interface.Entity" />
+  </alias>
+  <resultMaps>
+    <resultMap id="DATablelastdateResult" class="Daan.Interface.Entity.DATablelastdate">
+      <result property="Tablelastdateid" column="TABLELASTDATEID" type="decimal" dbType="Real"/>
+      <result property="Tablename" column="TABLENAME" type="string" dbType="varchar"/>
+      <result property="Lastdate" column="LASTDATE" type="DateTime" dbType="DateTime"/>
+      <result property="Createdate" column="CREATEDATE" type="DateTime" dbType="DateTime"/>
+      <result property="Remark" column="REMARK" type="string" dbType="varchar"/>
+    </resultMap>
+  </resultMaps>
+  <statements>
+
+    <select id="SelectDATablelastdate" parameterClass="string" resultMap="DATablelastdateResult">
+      SELECT TABLELASTDATEID AS Tablelastdateid,TABLENAME AS Tablename,LASTDATE AS Lastdate,CREATEDATE AS Createdate,REMARK AS Remark
+      FROM DA_TABLELASTDATE where 1=1
+      <isNotEmpty prepend="and" property="Tablename">
+        Tablename = #Tablename#
+      </isNotEmpty>
+    </select>
+
+    <select id="SelectDATablelastdateByTableName" parameterClass="string" >
+      SELECT LASTDATE FROM DA_TABLELASTDATE where TABLENAME=#value#
+    </select>
+
+    <insert id="InsertDATablelastdate" parameterClass="DATablelastdate">
+      INSERT INTO DA_TABLELASTDATE
+      (TABLENAME,LASTDATE,CREATEDATE,REMARK)
+      VALUES(#Tablename#,#Lastdate#,getdate(),#Remark#)
+    </insert>
+
+    <update id="UpdateDATablelastdate" parameterClass="DATablelastdate">
+      UPDATE DA_TABLELASTDATE
+      SET LASTDATE=#Lastdate#
+      <isNotNull property="Remark">
+        ,REMARK=#Remark#
+      </isNotNull>
+      where TABLENAME=#Tablename#
+    </update>
+    <update id="UpdateDATablelastdateByTablename"  parameterClass="Hashtable">
+      UPDATE DA_TABLELASTDATE
+      SET LASTDATE=#Lastdate#
+      where TABLENAME=#Tablename#
+    </update>
+    <delete id="DeleteDATablelastdate" parameterClass="string">
+      DELETE FROM DA_TABLELASTDATE
+    </delete>
+  </statements>
+</sqlMap>

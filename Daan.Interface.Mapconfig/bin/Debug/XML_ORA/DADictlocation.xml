@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="Daan.Interface.Entity" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ibatis.apache.org/mapping">
+  <alias>
+    <typeAlias alias="DADictlocation"  type="Daan.Interface.Entity.DADictlocation,Daan.Interface.Entity" />
+  </alias>
+  <resultMaps>
+    <resultMap id="DictlocationResult" class="Daan.Interface.Entity.DADictlocation">
+      <result property="Dictlocationid" column="DICTLOCATIONID" />
+      <result property="Fastcode" column="FASTCODE" />
+      <result property="Locationname" column="LOCATIONNAME" />
+      <result property="Active" column="ACTIVE" />
+     
+    </resultMap>
+  </resultMaps>
+  <statements>
+
+    <select id="SelectDictlocation" parameterClass="Hashtable" resultClass="DADictlocation">
+      SELECT DICTLOCATIONID AS Dictlocationid,FASTCODE AS Fastcode,LOCATIONNAME AS Locationname,ACTIVE AS Active
+      FROM da_dictlocation where 1 = 1
+      <isNotEmpty prepend="and" property="Dictlocationid">
+        Dictlocationid = #Dictlocationid#
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="Locationname">
+        Locationname = #Locationname#
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="Fastcode">
+        Fastcode = #Fastcode#
+      </isNotEmpty>
+    </select>
+    <insert id="InsertDictlocation" parameterClass="DADictlocation">
+      INSERT INTO da_dictlocation
+      (FASTCODE,LOCATIONNAME,ACTIVE)
+      VALUES(#Fastcode#,#Locationname#,#Active#)
+    </insert>
+    <update id="UpdateDictlocation" parameterClass="DADictlocation">
+      UPDATE da_dictlocation
+      SET FASTCODE=#Fastcode#,LOCATIONNAME=#Locationname#,ACTIVE=#Active#
+      WHERE DICTLOCATIONID = #Dictlocationid#
+    </update>
+    <delete id="DeleteDictlocation" parameterClass="string">
+      DELETE FROM da_dictlocation
+      WHERE DICTLOCATIONID = #value#
+    </delete>
+  </statements>
+</sqlMap>

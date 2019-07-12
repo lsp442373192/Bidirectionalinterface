@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" ConvertNulls="false" UseFileCache="true" ReportInfo.Created="12/06/2010 09:03:46" ReportInfo.Modified="02/13/2014 10:05:51" ReportInfo.CreatorVersion="1.7.1.0">
+  <ScriptText>using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Windows.Forms;
+using System.Drawing;
+using System.Data;
+using FastReport;
+using FastReport.Data;
+using FastReport.Dialog;
+using FastReport.Barcode;
+using FastReport.Table;
+using FastReport.Utils;
+
+namespace FastReport
+{
+  public class ReportScript
+  {
+
+    
+    private void Text3_AfterData(object sender, EventArgs e)
+    {
+      
+    }
+  }
+}
+</ScriptText>
+  <Dictionary>
+    <OdbcDataConnection Name="Connection" ConnectionString="rijcmlquUWmSFy3M0ojTxWeQMYizKrJD+xukOYsJ0chFRGqn0PsVc9dbycMVV0Gj2ZG7PxT35jOP/9LcEtHnj7I+WpUhg==">
+      <TableDataSource Alias="dtRepList" DataType="System.Int32" Enabled="true">
+        <Column Name="Requestcode" DataType="System.Int32"/>
+        <Column Name="Hospsampleid" DataType="System.String"/>
+        <Column Name="Patientname" DataType="System.String"/>
+        <Column Name="Sex" DataType="System.String"/>
+        <Column Name="Age" DataType="System.String"/>
+        <Column Name="Customertestnames" DataType="System.String"/>
+        <Column Name="Column" Alias="Hospsamplenumber" DataType="System.Int32" Calculated="true" Expression=""/>
+        <Column Name="Column1" Enabled="false" DataType="System.Int32" Calculated="true" Expression=""/>
+        <Column Name="Column2" Alias="Ageunit" DataType="System.Int32" Calculated="true" Expression=""/>
+      </TableDataSource>
+      <TableDataSource Alias="dtCount" DataType="System.Int32" Enabled="true">
+        <Column Name="count" DataType="System.Int32"/>
+      </TableDataSource>
+      <TableDataSource Alias="dtTitle" DataType="System.String" Enabled="true">
+        <Column Name="Hospname" DataType="System.String"/>
+      </TableDataSource>
+      <TableDataSource Alias="dtUserName" DataType="System.String" Enabled="true">
+        <Column Name="dr" DataType="System.String"/>
+      </TableDataSource>
+    </OdbcDataConnection>
+    <Relation Name="dtPatientInfo_dtSpecimenResult" ReferenceName="Data.dtPatientInfo_dtSpecimenResult" ParentDataSource="null" ChildDataSource="null" ParentColumns="instrumentSeqID" ChildColumns="instrumentSeqID" Enabled="true"/>
+    <Parameter Name="hCaption" DataType="System.String"/>
+  </Dictionary>
+  <ReportPage Name="Page1" Landscape="true" PaperWidth="297" PaperHeight="210" FirstPageSource="15" OtherPagesSource="15">
+    <PageHeaderBand Name="PageHeader2" Width="1047.06" Height="113.4">
+      <RichObject Name="Rich2" Left="18.9" Top="56.7" Width="47.25" Height="18.9" Text="{\rtf1\ansi\ansicpg936\deff0\deflang1033\deflangfe2052{\fonttbl{\f0\fnil\fcharset134 \'cb\'ce\'cc\'e5;}{\f1\fnil\fcharset0 Tahoma;}}&#13;&#10;\viewkind4\uc1\pard\lang2052\f0\fs20\'d2\'bd\'d4\'ba\'a3\'ba\lang1033\f1\fs17\par&#13;&#10;}&#13;&#10;"/>
+      <RichObject Name="Rich5" Left="557.55" Top="56.7" Width="66.15" Height="18.9" Text="{\rtf1\ansi\ansicpg936\deff0\deflang1033\deflangfe2052{\fonttbl{\f0\fnil\fcharset134 \'cb\'ce\'cc\'e5;}{\f1\fnil\fcharset0 Tahoma;}}&#13;&#10;\viewkind4\uc1\pard\lang2052\f0\fs20\'b1\'ea\'b1\'be\'ca\'fd\'a3\'ba\lang1033\f1\fs17\par&#13;&#10;}&#13;&#10;"/>
+      <TableObject Name="Table2" Left="9.45" Top="85.05" Width="701.82" Height="28.35" Border.Lines="All">
+        <TableColumn Name="Column8" Width="36.75"/>
+        <TableColumn Name="Column9" Width="143.64"/>
+        <TableColumn Name="Column15" Width="105.84"/>
+        <TableColumn Name="Column10" Width="46.2"/>
+        <TableColumn Name="Column11" Width="36.75"/>
+        <TableColumn Name="Column12" Width="56.7"/>
+        <TableColumn Name="Column13" Width="132.3"/>
+        <TableColumn Name="Column14" Width="143.64"/>
+        <TableRow Name="Row3" Height="28.35">
+          <TableCell Name="Cell33" Border.Lines="Right" Font="宋体, 9pt">
+            <TextObject Name="Text6" Top="9.45" Width="37.8" Height="18.9" Text="序号" Font="宋体, 9pt"/>
+          </TableCell>
+          <TableCell Name="Cell34" Border.Lines="Right" HorzAlign="Center" Font="宋体, 9pt">
+            <TextObject Name="Text7" Left="28.35" Top="9.45" Width="94.5" Height="18.9" Text="医院条码号" HorzAlign="Center" Font="宋体, 9pt"/>
+          </TableCell>
+          <TableCell Name="Cell40" Border.Lines="Right" Font="宋体, 9pt">
+            <TextObject Name="Text5" Left="18.9" Top="9.45" Width="85.05" Height="18.9" Text="医院样本号" HorzAlign="Center" Font="宋体, 9pt"/>
+          </TableCell>
+          <TableCell Name="Cell35" Border.Lines="Right" Font="宋体, 9pt">
+            <TextObject Name="Text8" Left="9.45" Top="9.45" Width="56.7" Height="18.9" Text="姓名" Font="宋体, 9pt"/>
+          </TableCell>
+          <TableCell Name="Cell36" Border.Lines="Right" Font="宋体, 9pt">
+            <TextObject Name="Text9" Top="9.45" Width="37.8" Height="18.9" Text="性别" Font="宋体, 9pt"/>
+          </TableCell>
+          <TableCell Name="Cell37" Border.Lines="Right" Font="宋体, 9pt">
+            <TextObject Name="Text10" Left="9.45" Top="9.45" Width="37.8" Height="18.9" Text="年龄" Font="宋体, 9pt"/>
+          </TableCell>
+          <TableCell Name="Cell38" Border.Lines="Right" Font="宋体, 9pt">
+            <TextObject Name="Text11" Left="28.35" Top="9.45" Width="66.15" Height="18.9" Text="检测项目" Font="宋体, 9pt"/>
+          </TableCell>
+          <TableCell Name="Cell39" HorzAlign="Center" Font="宋体, 9pt">
+            <TextObject Name="Text12" Left="37.8" Top="9.45" Width="66.15" Height="18.9" Text="达安条码" Font="宋体, 9pt"/>
+          </TableCell>
+        </TableRow>
+      </TableObject>
+      <TextObject Name="Text17" Left="56.7" Top="56.7" Width="255.15" Height="18.9" Text="[dtTitle.Hospname]" VertAlign="Center" Font="宋体, 10pt"/>
+      <TextObject Name="Text19" Left="9.45" Top="18.9" Width="699.3" Height="28.35" Border.Lines="Bottom" Text="外送达安标本清单" HorzAlign="Center" VertAlign="Center" Font="宋体, 14pt, style=Bold"/>
+      <RichObject Name="Rich1" Left="614.25" Top="56.7" Width="85.05" Height="18.9" Text="{\rtf1\ansi\ansicpg936\deff0\deflang1033\deflangfe2052{\fonttbl{\f0\fnil\fcharset134 \'cb\'ce\'cc\'e5;}{\f1\fnil\fcharset0 Tahoma;}}&#13;&#10;\viewkind4\uc1\pard\lang2052\f0\fs18 [dtCount.count]\lang1033\f1\fs17\par&#13;&#10;}&#13;&#10;"/>
+    </PageHeaderBand>
+    <DataBand Name="Data2" Top="117.4" Width="1047.06" Height="37.8" CanGrow="true" CanShrink="true" CanBreak="true" DataSource="">
+      <TableObject Name="Table1" Left="9.45" Width="701.82" Height="37.8" Border.Lines="Left, Right, Bottom">
+        <TableColumn Name="Column1" Width="36.75"/>
+        <TableColumn Name="Column2" Width="143.64"/>
+        <TableColumn Name="Column16" Width="105.84"/>
+        <TableColumn Name="Column3" Width="46.2"/>
+        <TableColumn Name="Column4" Width="36.75"/>
+        <TableColumn Name="Column5" Width="56.7"/>
+        <TableColumn Name="Column6" Width="132.3"/>
+        <TableColumn Name="Column7" Width="143.64"/>
+        <TableRow Name="Row2" Height="37.8" AutoSize="true">
+          <TableCell Name="Cell6" Border.Lines="Right" Font="宋体, 9pt">
+            <TextObject Name="Text2" Top="9.45" Width="37.8" Height="18.9" Text="[Row#]" AutoWidth="true" Font="宋体, 9pt"/>
+          </TableCell>
+          <TableCell Name="Cell7" Border.Lines="Right" HorzAlign="Center" Font="宋体, 9pt">
+            <BarcodeObject Name="Barcode1" Left="7.56" Width="128.52" Height="37.8" AutoSize="false" DataColumn="dtRepList.Hospsampleid" Barcode="Code128" Barcode.WideBarRatio="2.5" Barcode.AutoEncode="true"/>
+          </TableCell>
+          <TableCell Name="Cell41" Border.Lines="Right" Font="宋体, 9pt">
+            <BarcodeObject Name="Barcode3" Left="9.45" Width="90.72" Height="37.8" AutoSize="false" DataColumn="dtRepList.Hospsamplenumber" Barcode="Code128" Barcode.WideBarRatio="2.5" Barcode.AutoEncode="true"/>
+          </TableCell>
+          <TableCell Name="Cell8" Border.Lines="Right" HorzAlign="Center" Font="宋体, 9pt">
+            <TextObject Name="Text1" Top="9.45" Width="47.25" Height="28.35" Text="[dtRepList.Patientname]" Font="宋体, 9pt"/>
+          </TableCell>
+          <TableCell Name="Cell9" Border.Lines="Right" Font="宋体, 9pt">
+            <TextObject Name="Text3" Top="9.45" Width="37.8" Height="28.35" Text="[dtRepList.Sex]" AutoWidth="true" Font="宋体, 9pt"/>
+          </TableCell>
+          <TableCell Name="Cell10" Border.Lines="Right" Font="宋体, 9pt">
+            <TextObject Name="Text4" Top="9.45" Width="47.25" Height="28.35" Text="[dtRepList.Age][dtRepList.Ageunit]" AutoWidth="true" Font="宋体, 9pt"/>
+          </TableCell>
+          <TableCell Name="Cell27" Border.Lines="Right" Text="[dtRepList.Customertestnames]" VertAlign="Center" Font="宋体, 9pt"/>
+          <TableCell Name="Cell32" Font="宋体, 9pt">
+            <BarcodeObject Name="Barcode2" Left="7.56" Width="128.52" Height="37.8" AutoSize="false" DataColumn="dtRepList.Requestcode" Barcode="Code128" Barcode.WideBarRatio="2.5" Barcode.AutoEncode="true"/>
+          </TableCell>
+        </TableRow>
+      </TableObject>
+    </DataBand>
+    <PageFooterBand Name="PageFooter1" Top="159.2" Width="1047.06" Height="47.25">
+      <TextObject Name="Text13" Left="18.9" Top="28.35" Width="85.05" Height="18.9" Text="制单人：" Font="宋体, 10pt"/>
+      <TextObject Name="Text14" Left="255.15" Top="28.35" Width="85.05" Height="18.9" Text="日期：" Font="宋体, 10pt"/>
+      <TextObject Name="Text15" Left="302.4" Top="28.35" Width="179.55" Height="18.9" Text="[Date]" Font="宋体, 10pt"/>
+      <TextObject Name="Text16" Left="585.9" Top="28.35" Width="122.85" Height="18.9" Text="[Page#]/[TotalPages#]" Font="宋体, 10pt"/>
+      <TextObject Name="Text18" Left="75.6" Top="28.35" Width="132.3" Height="18.9" Text="[dtUserName.dr]" Font="宋体, 10pt"/>
+      <TextObject Name="Text21" Left="311.85" Width="56.7" Height="18.9" Text="院方：" Font="宋体, 10pt"/>
+      <TextObject Name="Text20" Left="18.9" Width="56.7" Height="18.9" Text="达安：" Font="宋体, 10pt"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

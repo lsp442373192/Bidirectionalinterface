@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="Daan.Interface.Entity" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ibatis.apache.org/mapping">
+  <alias>
+    <typeAlias alias="DAResult"  type="Daan.Interface.Entity.DAResult,Daan.Interface.Entity" />
+  </alias>
+  <resultMaps>
+    <resultMap id="DAResultResult" class="Daan.Interface.Entity.DAResult">
+      <result property="Resultid" column="RESULTID" />
+      <result property="Requestcode" column="REQUESTCODE" />
+      <result property="Hospsampleid" column="HOSPSAMPLEID" />
+      <result property="Hospsamplenumber" column="HOSPSAMPLENUMBER" />
+      <result property="Testtype" column="TESTTYPE" />
+      <result property="Customergroupcode" column="CUSTOMERGROUPCODE" />
+      <result property="Customergroupname" column="CUSTOMERGROUPNAME" />
+      <result property="Customertestcode" column="CUSTOMERTESTCODE" />
+      <result property="Customertestname" column="CUSTOMERTESTNAME" />
+      <result property="Dagroupcode" column="DAGROUPCODE" />
+      <result property="Dagroupname" column="DAGROUPNAME" />
+      <result property="Datestcode" column="DATESTCODE" />
+      <result property="Datestname" column="DATESTNAME" />
+      <result property="Seqno" column="SEQNO"  />
+      <result property="Testresult" column="TESTRESULT"/>
+      <result property="Unit" column="UNIT" />
+      <result property="Hlflag" column="HLFLAG" />
+      <result property="Resultcomment" column="RESULTCOMMENT" />
+      <result property="Reference" column="REFERENCE" />
+      <result property="Releasebyname" column="RELEASEBYNAME" />
+      <result property="Releasedate" column="RELEASEDATE" />
+      <result property="Authorizebyname" column="AUTHORIZEBYNAME" />
+      <result property="Authorizedate" column="AUTHORIZEDATE" />
+      <result property="Status" column="STATUS" />
+      <result property="Testmethod" column="TESTMETHOD" />
+      <result property="Createdate" column="CREATEDATE" />
+      <result property="Reportremark" column="REPORTREMARK" />
+      <result property="Panicflag" column="PANICFLAG" />
+      <result property="Lastupdate" column="LASTUPDATE" />
+    </resultMap>
+  </resultMaps>
+  <statements>
+
+   <select id="SelectDAResult" parameterClass="string" resultMap="DAResultResult">
+     SELECT RESULTID AS Resultid,REQUESTCODE AS Requestcode,HOSPSAMPLEID AS Hospsampleid,HOSPSAMPLENUMBER AS Hospsamplenumber,TESTTYPE AS Testtype,CUSTOMERTESTNAME AS Customertestname,CUSTOMERTESTCODE AS Customertestcode,CUSTOMERGROUPNAME AS Customergroupname,CUSTOMERGROUPCODE AS Customergroupcode, DAGROUPCODE AS Dagroupcode,DAGROUPNAME AS Dagroupname,DATESTCODE AS Datestcode,DATESTNAME AS Datestname,SEQNO AS Seqno,TESTRESULT AS Testresult,UNIT AS Unit,HLFLAG AS Hlflag,RESULTCOMMENT AS Resultcomment,REFERENCE AS Reference,RELEASEBYNAME AS Releasebyname,RELEASEDATE AS Releasedate,AUTHORIZEBYNAME AS Authorizebyname,AUTHORIZEDATE AS Authorizedate,STATUS AS Status,TESTMETHOD AS Testmethod,CREATEDATE AS Createdate,REPORTREMARK AS Reportremark,PANICFLAG AS Panicflag,Lastupdate as LASTUPDATE
+     FROM DA_RESULT
+     <dynamic prepend="WHERE">
+        <isParameterPresent>
+          RESULTID = #value#
+        </isParameterPresent>
+      </dynamic>
+    </select>
+   <select id="Da.SelectDAResultByCode" parameterClass="Hashtable" resultMap="DAResultResult">
+     SELECT RESULTID AS Resultid,REQUESTCODE AS Requestcode,HOSPSAMPLEID AS Hospsampleid,HOSPSAMPLENUMBER AS Hospsamplenumber,TESTTYPE AS Testtype,CUSTOMERTESTNAME AS Customertestname,CUSTOMERTESTCODE AS Customertestcode,CUSTOMERGROUPNAME AS Customergroupname,CUSTOMERGROUPCODE AS Customergroupcode,DAGROUPCODE AS Dagroupcode,DAGROUPNAME AS Dagroupname,DATESTCODE AS Datestcode,DATESTNAME AS Datestname,SEQNO AS Seqno,TESTRESULT AS Testresult,UNIT AS Unit,HLFLAG AS Hlflag,RESULTCOMMENT AS Resultcomment,REFERENCE AS Reference,RELEASEBYNAME AS Releasebyname,RELEASEDATE AS Releasedate,AUTHORIZEBYNAME AS Authorizebyname,AUTHORIZEDATE AS Authorizedate,STATUS AS Status,TESTMETHOD AS Testmethod,CREATEDATE AS Createdate,REPORTREMARK AS Reportremark,PANICFLAG AS Panicflag,Lastupdate as LASTUPDATE
+     FROM DA_RESULT where 1= 1
+     <isNotEmpty prepend="and" property="Requestcode">
+        Requestcode = '$Requestcode$'  <!--达安条码-->
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="Hospsampleid">
+        Hospsampleid = '$Hospsampleid$'  <!--医院条码-->
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="Hospsamplenumber">
+        Hospsamplenumber = '$Hospsamplenumber$'  <!--医院样本号-->
+      </isNotEmpty>
+    </select>
+   <insert id="InsertDAResult" parameterClass="DAResult"> <!---新增 zhangwei-->
+     INSERT INTO DA_RESULT
+     (RESULTID,REQUESTCODE,HOSPSAMPLEID,HOSPSAMPLENUMBER,TESTTYPE,CUSTOMERTESTNAME,CUSTOMERTESTCODE,CUSTOMERGROUPNAME,CUSTOMERGROUPCODE,
+     DAGROUPCODE,DAGROUPNAME,DATESTCODE,DATESTNAME,SEQNO,TESTRESULT,UNIT,HLFLAG,RESULTCOMMENT,REFERENCE,RELEASEBYNAME,RELEASEDATE,AUTHORIZEBYNAME,
+     AUTHORIZEDATE,STATUS,TESTMETHOD,CREATEDATE,REPORTREMARK,PANICFLAG,LASTUPDATE)
+     VALUES(SEQ_DA_RESULT.Nextval,#Requestcode#,#Hospsampleid#,#Hospsamplenumber#,#Testtype#,#Customertestname#,#Customertestcode#,#Customergroupname#,
+     #Customergroupcode#,#Dagroupcode#,#Dagroupname#,#Datestcode#,#Datestname#,#Seqno#,#Testresult#,#Unit#,#Hlflag#,#Resultcomment#,#Reference#,#Releasebyname#,#Releasedate:DateTime:1/1/0001 12:00:00 AM#,#Authorizebyname#,
+     #Authorizedate:DateTime:1/1/0001 12:00:00 AM#,#Status#,#Testmethod#,sysdate,#Reportremark#,#Panicflag#,getdate())
+   </insert>
+   <update id="UpdateDAResult" parameterClass="DAResult">
+     UPDATE DA_RESULT
+     SET SEQNO=#Seqno#,TESTRESULT=#Testresult#,UNIT=#Unit#,HLFLAG=#Hlflag#,RESULTCOMMENT=#Resultcomment#,REFERENCE=#Reference#,
+     RELEASEBYNAME=#Releasebyname#,RELEASEDATE=#Releasedate#,AUTHORIZEBYNAME=#Authorizebyname#,AUTHORIZEDATE=#Authorizedate#,
+     STATUS=#Status#,REPORTREMARK=#Reportremark#,PANICFLAG=#Panicflag#,LASTUPDATE=getdate()
+     WHERE REQUESTCODE=#Requestcode# and (customertestcode in (select customertestcode from da_testmap dt where dt.datestcode=#Datestcode#) or DATESTCODE=#Datestcode#)
+     <!--DATESTCODE=#Datestcode#-->
+   </update>
+    <update id="UpdateDAResultByRequestcode" parameterClass="DAResult">
+      UPDATE DA_RESULT
+      SET SEQNO=#Seqno#,TESTRESULT=#Testresult#,UNIT=#Unit#,HLFLAG=#Hlflag#,RESULTCOMMENT=#Resultcomment#,REFERENCE=#Reference#,
+      RELEASEBYNAME=#Releasebyname#,RELEASEDATE=#Releasedate#,AUTHORIZEBYNAME=#Authorizebyname#,AUTHORIZEDATE=#Authorizedate#,
+      STATUS=#Status#,REPORTREMARK=#Reportremark#,PANICFLAG=#Panicflag#,LASTUPDATE=getdate()
+      WHERE REQUESTCODE=#Requestcode#
+    </update>
+
+
+    <update id="UpdateDAResultByRequestcodeBl" parameterClass="DAResult">
+      UPDATE DA_RESULT
+      SET TESTRESULT=#Testresult#,RELEASEBYNAME=#Releasebyname#,RELEASEDATE=#Releasedate#,AUTHORIZEBYNAME=#Authorizebyname#,AUTHORIZEDATE=#Authorizedate#,RESULTFLAG=#Resultflag#,STATUS=1,LASTUPDATE=getdate()
+      WHERE REQUESTCODE=#Requestcode#
+    </update>
+
+    <delete id="DeleteDAResult" parameterClass="string">
+      <!--根据达安条码删除信息zhangwei-->
+      DELETE FROM DA_RESULT
+      WHERE REQUESTCODE in ($Requestcode$)
+    </delete>
+    <delete id="DeleteDAResultById" parameterClass="string">
+      <!--根据ID删除信息zhouy-->
+      DELETE FROM DA_RESULT
+      WHERE Resultid in ($value$)
+    </delete>
+    <!--查询是否一个条码接收结果完毕 zhouy-->
+    <select id="SelectIsFullResultByRequestCode" parameterClass="string">
+      select decode((count(requestcode)-sum(r.status)),0,1,0) istrue
+      from da_result r
+      where r.requestcode=#value#
+    </select>
+
+    <!--单项发送 查询要发送的代码 zhouy-->
+    <select id="SelectSendTestCodeByRequestCode" parameterClass="string">
+      select a.customertestcode,a.customertestname,b.datestcode
+      from da_result a
+      left join da_testmap b on a.customertestcode=b.customertestcode
+      where requestcode=#value#
+    </select>
+
+    
+  </statements>
+</sqlMap>

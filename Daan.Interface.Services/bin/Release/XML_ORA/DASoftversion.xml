@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="Daan.Interface.Entity" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ibatis.apache.org/mapping">
+	<alias>
+		<typeAlias alias="DASoftversion" type="Daan.Interface.Entity.DASoftversion,Daan.Interface.Entity" />
+	</alias>
+	<resultMaps>
+		<resultMap id="DASoftversionResult" class="Daan.Interface.Entity.DASoftversion">
+			<result property="Versioncode" column="VERSIONCODE"/>
+			<result property="Versioninfo" column="VERSIONINFO"/>
+			<result property="Updatedate" column="UPDATEDATE"/>
+			<result property="Remark" column="REMARK"/>
+			<result property="Expansion" column="EXPANSION"/>
+			<result property="Exceptionlog" column="EXCEPTIONLOG"/>
+		</resultMap>
+	</resultMaps>
+	<statements>
+		<select id="SelectDASoftversion" parameterClass="Hashtable" resultMap="DASoftversionResult">
+			SELECT VERSIONCODE as Versioncode,Versioninfo as VERSIONINFO,Updatedate as UPDATEDATE,Remark as REMARK,Expansion as EXPANSION,Exceptionlog as EXCEPTIONLOG
+			FROM DA_SoftVersion WHERE 1=1
+			<isNotEmpty prepend="and" property="Versioncode">
+				Versioncode=#Versioncode#
+			</isNotEmpty>
+		</select>
+		<select id="SelectLastDASoftversion" parameterClass="string" resultMap="DASoftversionResult">
+			SELECT VERSIONCODE as Versioncode,Versioninfo as VERSIONINFO,Updatedate as UPDATEDATE,Remark as REMARK,Expansion as EXPANSION,Exceptionlog as EXCEPTIONLOG
+			FROM DA_SoftVersion WHERE Versioncode=(SELECT max(Versioncode) FROM DA_SoftVersion)
+		</select>
+		<insert id="InsertDASoftversion" parameterClass="DASoftversion">
+			INSERT INTO DA_SoftVersion
+			(VERSIONCODE,VERSIONINFO,UPDATEDATE,REMARK,EXPANSION,EXCEPTIONLOG)
+			VALUES(#Versioncode#,#Versioninfo#,#Updatedate:DateTime:1/1/0001 12:00:00 AM#,#Remark#,#Expansion#,#Exceptionlog#)
+		</insert>
+		<delete id="DeleteDASoftversion" parameterClass="string">
+			DELETE FROM DA_SoftVersion
+			WHERE VERSIONCODE = #value#
+		</delete>
+	</statements>
+</sqlMap>

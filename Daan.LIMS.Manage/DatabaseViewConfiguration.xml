@@ -1,0 +1,8 @@
+﻿<database>
+  <databasetype>2</databasetype>
+  <userid>ycbl</userid>
+  <password>daandev</password>
+  <dataname>ycbl180726</dataname>
+  <datasource>192.168.14.41</datasource>
+  <port>3308</port>
+</database>

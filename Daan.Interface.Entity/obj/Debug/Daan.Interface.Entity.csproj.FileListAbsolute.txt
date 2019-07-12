@@ -1,0 +1,14 @@
+E:\40.IT\Bidirectionalinterface\SourceCode\BI\Daan.Interface.Entity\bin\Debug\Daan.Interface.Entity.dll
+E:\40.IT\Bidirectionalinterface\SourceCode\BI\Daan.Interface.Entity\bin\Debug\Daan.Interface.Entity.pdb
+E:\40.IT\Bidirectionalinterface\SourceCode\BI\Daan.Interface.Entity\obj\Debug\Daan.Interface.Entity.dll
+E:\40.IT\Bidirectionalinterface\SourceCode\BI\Daan.Interface.Entity\obj\Debug\Daan.Interface.Entity.pdb
+E:\40.IT\Bidirectionalinterface\SourceCode\BI\Daan.Interface.Entity\obj\Debug\Daan.Interface.Entity.csprojResolveAssemblyReference.cache
+E:\WorkPlace\System\双向对接\BI\Daan.Interface.Entity\bin\Debug\Daan.Interface.Entity.dll
+E:\WorkPlace\System\双向对接\BI\Daan.Interface.Entity\bin\Debug\Daan.Interface.Entity.pdb
+E:\WorkPlace\System\双向对接\BI\Daan.Interface.Entity\obj\Debug\Daan.Interface.Entity.csprojResolveAssemblyReference.cache
+E:\WorkPlace\System\双向对接\BI\Daan.Interface.Entity\obj\Debug\Daan.Interface.Entity.dll
+E:\WorkPlace\System\双向对接\BI\Daan.Interface.Entity\obj\Debug\Daan.Interface.Entity.pdb
+E:\WorkPlace\System\双向对接\MySQL版本\Daan.Interface.Entity\bin\Debug\Daan.Interface.Entity.dll
+E:\WorkPlace\System\双向对接\MySQL版本\Daan.Interface.Entity\bin\Debug\Daan.Interface.Entity.pdb
+E:\WorkPlace\System\双向对接\MySQL版本\Daan.Interface.Entity\obj\Debug\Daan.Interface.Entity.dll
+E:\WorkPlace\System\双向对接\MySQL版本\Daan.Interface.Entity\obj\Debug\Daan.Interface.Entity.pdb

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="Daan.Interface.Entity" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ibatis.apache.org/mapping">
+	<alias>
+		<typeAlias alias="DADicttestitem"  type="Daan.Interface.Entity.DADicttestitem,Daan.Interface.Entity" />
+	</alias>
+	<resultMaps>
+		<resultMap id="DADicttestitemResult" class="Daan.Interface.Entity.DADicttestitem">
+			<result property="Datestitemid" column="DATESTITEMID"/>
+			<result property="Datestcode" column="DATESTCODE" />
+			<result property="Datestname" column="DATESTNAME" />
+			<result property="Englishname" column="ENGLISHNAME" />
+			<result property="Engshortname" column="ENGSHORTNAME" />
+			<result property="Isgroup" column="ISGROUP" />
+			<result property="Testmethod" column="TESTMETHOD" />
+			<result property="Testtype" column="TESTTYPE" />
+			<result property="Createtime" column="CREATETIME"/>
+			<result property="Fastcode" column="FASTCODE" />
+			<result property="SampleType" column="SAMPLETYPE" />
+		</resultMap>
+	</resultMaps>
+	<statements>
+		<!--根据条件获取数据 fenghp-->
+		<select id="SelectDADicttestitem" parameterClass="string" resultMap="DADicttestitemResult">
+			SELECT DATESTITEMID AS Datestitemid,DATESTCODE AS Datestcode,DATESTNAME AS Datestname,ENGLISHNAME AS Englishname,ENGSHORTNAME AS Engshortname,ISGROUP AS Isgroup,TESTMETHOD AS Testmethod,TESTTYPE AS Testtype,CREATETIME AS Createtime,FASTCODE AS Fastcode,SAMPLETYPE AS SampleType
+			FROM DA_DICTTESTITEM where 1=1
+			<isNotEmpty prepend="and" property="strKey">
+				(DATESTCODE like '%$strKey$%' or DATESTNAME like  '%$strKey$%' or ENGLISHNAME like  '%$strKey$%' or ENGSHORTNAME like  '%$strKey$%')
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="Datestcode">
+				Datestcode = #Datestcode#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="Datestname">
+				Datestname = #Datestname#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="Datestitemid">
+				Datestitemid = #Datestitemid#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="IsGroup">
+				IsGroup = #IsGroup#
+			</isNotEmpty>
+		</select>
+		<!--根据医院代码获取对照好的达安项目 fenghp-->
+		<select id="SelectDADicttestitemByHospCode" parameterClass="string" resultMap="DADicttestitemResult">
+			SELECT dd.DATESTITEMID AS Datestitemid,dd.DATESTCODE AS Datestcode,dd.DATESTNAME AS Datestname,dd.ENGLISHNAME AS Englishname,dd.ENGSHORTNAME AS Engshortname,dd.ISGROUP AS Isgroup,dd.TESTMETHOD AS Testmethod,dd.TESTTYPE AS Testtype,dd.CREATETIME AS Createtime,dd.FASTCODE AS Fastcode,dd.SAMPLETYPE AS SampleType
+			FROM DA_DICTTESTITEM dd INNER JOIN da_testmap dt ON dd.datestcode=dt.datestcode
+			where 1=1
+			<isNotEmpty prepend="and" property="customertestcode">
+				dt.customertestcode = #customertestcode#
+			</isNotEmpty>
+		</select>
+		<!--批量插入-->
+		<insert id="AddDADicttestitem"  parameterClass="ArrayList">
+			<iterate conjunction=" " open="" close=""  >
+				<![CDATA[insert into DA_DICTTESTITEM(DATESTCODE,DATESTNAME,ENGLISHNAME,ENGSHORTNAME,ISGROUP,TESTMETHOD,TESTTYPE,CREATETIME,FASTCODE,SAMPLETYPE) 
+        values('$[].Datestcode$','$[].Datestname$', #[].Englishname#, '$[].Engshortname$', '$[].Isgroup$', '$[].Testmethod$', '$[].Testtype$', '$[].Createtime$', '$[].Fastcode$', '$[].SampleType$');]]>
+			</iterate>
+		</insert>
+		<insert id="InsertDADicttestitem" parameterClass="DADicttestitem">
+			INSERT INTO DA_DICTTESTITEM
+			(DATESTCODE,DATESTNAME,ENGLISHNAME,ENGSHORTNAME,ISGROUP,TESTMETHOD,TESTTYPE,CREATETIME,FASTCODE,SAMPLETYPE)
+			VALUES(#Datestcode#,#Datestname#,#Englishname#,#Engshortname#,#Isgroup#,#Testmethod#,#Testtype#,#Createtime#,#Fastcode#,#SampleType#)
+		</insert>
+		<update id="UpdateDADicttestitem" parameterClass="DADicttestitem">
+			UPDATE DA_DICTTESTITEM
+			SET DATESTCODE=#Datestcode#,DATESTNAME=#Datestname#,ENGLISHNAME=#Englishname#,ENGSHORTNAME=#Engshortname#,ISGROUP=#Isgroup#,TESTMETHOD=#Testmethod#,TESTTYPE=#Testtype#,CREATETIME=#Createtime#,FASTCODE=#Fastcode#,SAMPLETYPE=#SampleType#
+			WHERE DATESTITEMID = #Datestitemid#
+		</update>
+		<!--根据条件删除数据 传空的ID值则删除全部数据 指定ID则删除对应的ID数据 fenghp-->
+		<delete id="DeleteDADicttestitem" parameterClass="string">
+			DELETE FROM DA_DICTTESTITEM where 1=1
+			<isNotEmpty prepend="and">
+				DATESTITEMID in($value$)
+			</isNotEmpty>
+		</delete>
+	</statements>
+</sqlMap>

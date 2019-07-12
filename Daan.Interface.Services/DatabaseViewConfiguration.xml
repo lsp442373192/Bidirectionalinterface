@@ -1,0 +1,17 @@
+﻿<database>
+	<!--<databasetype>0</databasetype>
+	<userid>lisdev</userid>
+	<password>dev</password>
+	<dataname>limstest</dataname>
+	<datasource></datasource>-->
+  <!--<databasetype>1</databasetype>
+  <userid>his</userid>
+  <password>123</password>
+  <dataname>dklis_dev</dataname>
+  <datasource>202.116.104.43</datasource>-->
+  <databasetype>0</databasetype>
+  <userid>lisuat</userid>
+  <password>test</password>
+  <dataname>lis241</dataname>
+  <datasource></datasource>
+</database>

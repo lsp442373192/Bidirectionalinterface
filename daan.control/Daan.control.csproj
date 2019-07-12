@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{2712C884-6658-4267-9518-7DA35DB550C0}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Daan.control</RootNamespace>
+    <AssemblyName>daan.control</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DictDoctorSelect.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DictDoctorSelect.designer.cs">
+      <DependentUpon>DictDoctorSelect.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DictLibrarySelect.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DictLibrarySelect.designer.cs">
+      <DependentUpon>DictLibrarySelect.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DictLocation.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DictLocation.designer.cs">
+      <DependentUpon>DictLocation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DictTestSelect.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DictTestSelect.designer.cs">
+      <DependentUpon>DictTestSelect.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DictCustomerSelect.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DictCustomerSelect.designer.cs">
+      <DependentUpon>DictCustomerSelect.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LISPop.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="LISPopSelect.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="LISPopSelect.designer.cs">
+      <DependentUpon>LISPopSelect.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="DictDoctorSelect.resx">
+      <DependentUpon>DictDoctorSelect.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DictLibrarySelect.resx">
+      <DependentUpon>DictLibrarySelect.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DictLocation.resx">
+      <DependentUpon>DictLocation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DictTestSelect.resx">
+      <DependentUpon>DictTestSelect.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DictCustomerSelect.resx">
+      <DependentUpon>DictCustomerSelect.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LISPop.resx">
+      <DependentUpon>LISPop.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LISPopSelect.resx">
+      <DependentUpon>LISPopSelect.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Daan.Interface.BLL\Daan.Interface.BLL.csproj">
+      <Project>{23805C3C-D9B9-4EF8-A11A-DB614F900F80}</Project>
+      <Name>Daan.Interface.BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Daan.Interface.Dao\Daan.Interface.Dao.csproj">
+      <Project>{621AB555-4D5B-429D-A15E-546D8A5F2832}</Project>
+      <Name>Daan.Interface.Dao</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Daan.Interface.Entity\Daan.Interface.Entity.csproj">
+      <Project>{688C4832-5352-4D28-883D-A8E3283C28E4}</Project>
+      <Name>Daan.Interface.Entity</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\DataSources\Daan.Interface.Entity.DADictcustomer.datasource" />
+    <None Include="Properties\DataSources\Daan.Interface.Entity.DADictdoctor.datasource" />
+    <None Include="Properties\DataSources\Daan.Interface.Entity.DADictlibrary.datasource" />
+    <None Include="Properties\DataSources\Daan.Interface.Entity.DADicttestitem.datasource" />
+    <None Include="Properties\DataSources\Daan.Interface.Entity.Dictlocation.datasource" />
+    <None Include="Properties\DataSources\Daan.Interface.Entity.Dicttestitem.datasource" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

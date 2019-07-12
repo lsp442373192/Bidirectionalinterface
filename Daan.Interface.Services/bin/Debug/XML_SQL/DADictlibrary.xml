@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="Daan.Interface.Entity" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ibatis.apache.org/mapping">
+	<alias>
+		<typeAlias alias="DADictlibrary"  type="Daan.Interface.Entity.DADictlibrary,Daan.Interface.Entity" />
+	</alias>
+	<resultMaps>
+		<resultMap id="DictlibraryResult" class="Daan.Interface.Entity.DADictlibrary">
+			<result property="Dictlibraryid" column="DICTLIBRARYID" />
+			<result property="Librarytypecode" column="LIBRARYTYPECODE" />
+			<result property="Librarytypename" column="LIBRARYTYPENAME" />
+			<result property="Fastcode" column="FASTCODE" />
+			<result property="Active" column="ACTIVE" />
+			<result property="Displayorder" column="DISPLAYORDER" />
+			<result property="Libraryname" column="LIBRARYNAME" />
+			<result property="Remark" column="REMARK" />
+			<result property="Englibraryname" column="ENGLIBRARYNAME" />
+			<result property="Lastupdatedate" column="LASTUPDATEDATE" />
+			<result property="Uniqueid" column="UNIQUEID" />
+		</resultMap>
+	</resultMaps>
+	<statements>
+
+		<select id="SelectDictlibrary" parameterClass="Hashtable" resultClass="DADictlibrary">
+			SELECT DICTLIBRARYID AS Dictlibraryid,LIBRARYTYPECODE AS Librarytypecode,LIBRARYTYPENAME AS Librarytypename,FASTCODE AS Fastcode,ACTIVE AS Active,DISPLAYORDER AS Displayorder,LIBRARYNAME AS Libraryname,REMARK AS Remark,ENGLIBRARYNAME AS Englibraryname,LASTUPDATEDATE AS Lastupdatedate,UNIQUEID AS Uniqueid
+			FROM da_dictlibrary where 1 = 1
+			<isNotEmpty prepend="and" property="Dictlibraryid">
+				Dictlibraryid = #Dictlibraryid#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="Librarytypecode">
+				Librarytypecode = #Librarytypecode#
+			</isNotEmpty>
+		</select>
+		<insert id="InsertDictlibrary" parameterClass="DADictlibrary">
+			INSERT INTO da_dictlibrary
+			(DICTLIBRARYID,LIBRARYTYPECODE,LIBRARYTYPENAME,FASTCODE,ACTIVE,DISPLAYORDER,LIBRARYNAME,REMARK,ENGLIBRARYNAME,LASTUPDATEDATE,UNIQUEID)
+			VALUES(#Dictlibraryid#,#Librarytypecode#,#Librarytypename#,#Fastcode#,#Active#,#Displayorder#,#Libraryname#,#Remark#,#Englibraryname#,#Lastupdatedate:DateTime:1/1/0001 12:00:00 AM#,#Uniqueid#)
+		</insert>
+		<update id="UpdateDictlibrary" parameterClass="DADictlibrary">
+			UPDATE da_dictlibrary
+			SET DICTLIBRARYID=#Dictlibraryid#,LIBRARYTYPECODE=#Librarytypecode#,LIBRARYTYPENAME=#Librarytypename#,FASTCODE=#Fastcode#,ACTIVE=#Active#,DISPLAYORDER=#Displayorder#,LIBRARYNAME=#Libraryname#,REMARK=#Remark#,ENGLIBRARYNAME=#Englibraryname#,LASTUPDATEDATE=#Lastupdatedate#,UNIQUEID=#Uniqueid#
+			WHERE DICTLIBRARYID = #Dictlibraryid#
+		</update>
+		<delete id="DeleteDictlibrary" parameterClass="string">
+			DELETE FROM da_dictlibrary
+			WHERE DICTLIBRARYID = #value#
+		</delete>
+	</statements>
+</sqlMap>

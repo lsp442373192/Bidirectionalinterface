@@ -1,0 +1,17 @@
+E:\40.IT\Bidirectionalinterface\SourceCode\BI\Daan.Interface.Entity\bin\Release\Daan.Interface.Entity.dll
+E:\40.IT\Bidirectionalinterface\SourceCode\BI\Daan.Interface.Entity\bin\Release\Daan.Interface.Entity.pdb
+E:\40.IT\Bidirectionalinterface\SourceCode\BI\Daan.Interface.Entity\obj\Release\Daan.Interface.Entity.dll
+E:\40.IT\Bidirectionalinterface\SourceCode\BI\Daan.Interface.Entity\obj\Release\Daan.Interface.Entity.pdb
+E:\40.IT\Bidirectionalinterface\SourceCode\BI\Daan.Interface.Entity\obj\Release\Daan.Interface.Entity.csprojResolveAssemblyReference.cache
+E:\40.IT\Bidirectionalinterface\SourceCode\BI\BI\Daan.Interface.Entity\bin\Release\Daan.Interface.Entity.dll
+E:\40.IT\Bidirectionalinterface\SourceCode\BI\BI\Daan.Interface.Entity\bin\Release\Daan.Interface.Entity.pdb
+E:\40.IT\Bidirectionalinterface\SourceCode\BI\BI\Daan.Interface.Entity\obj\Release\Daan.Interface.Entity.dll
+E:\40.IT\Bidirectionalinterface\SourceCode\BI\BI\Daan.Interface.Entity\obj\Release\Daan.Interface.Entity.pdb
+E:\WorkPlace\System\双向对接\BI\Daan.Interface.Entity\bin\Release\Daan.Interface.Entity.dll
+E:\WorkPlace\System\双向对接\BI\Daan.Interface.Entity\bin\Release\Daan.Interface.Entity.pdb
+E:\WorkPlace\System\双向对接\BI\Daan.Interface.Entity\obj\Release\Daan.Interface.Entity.dll
+E:\WorkPlace\System\双向对接\BI\Daan.Interface.Entity\obj\Release\Daan.Interface.Entity.pdb
+E:\WorkPlace\System\双向对接\MySQL版本\Daan.Interface.Entity\bin\Release\Daan.Interface.Entity.dll
+E:\WorkPlace\System\双向对接\MySQL版本\Daan.Interface.Entity\bin\Release\Daan.Interface.Entity.pdb
+E:\WorkPlace\System\双向对接\MySQL版本\Daan.Interface.Entity\obj\Release\Daan.Interface.Entity.dll
+E:\WorkPlace\System\双向对接\MySQL版本\Daan.Interface.Entity\obj\Release\Daan.Interface.Entity.pdb

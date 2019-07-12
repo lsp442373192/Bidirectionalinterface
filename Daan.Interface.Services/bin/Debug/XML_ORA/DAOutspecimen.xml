@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="Daan.Interface.Entity" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ibatis.apache.org/mapping">
+  <alias>
+    <typeAlias alias="DAOutspecimen"  type="Daan.Interface.Entity.DAOutspecimen,Daan.Interface.Entity" />
+  </alias>
+  <resultMaps>
+    <resultMap id="DAOutspecimenResult" class="Daan.Interface.Entity.DAOutspecimen">
+      <result property="Outspecimenid" column="OUTSPECIMENID" />
+      <result property="Requestcode" column="REQUESTCODE" />
+      <result property="Hospsampleid" column="HOSPSAMPLEID" />
+      <result property="Hospsamplenumber" column="HOSPSAMPLENUMBER" />
+      <result property="Patientnumber" column="PATIENTNUMBER" />
+      <result property="Bednumber" column="BEDNUMBER" />
+      <result property="Samplingdate" column="SAMPLINGDATE" />
+      <result property="Patientsource" column="PATIENTSOURCE" />
+      <result property="Patientname" column="PATIENTNAME" />
+      <result property="Sex" column="SEX" />
+      <result property="Caculateage" column="CACULATEAGE" />
+      <result property="Patienttel" column="PATIENTTEL" />
+      <result property="Location" column="LOCATION" />
+      <result property="Patientid" column="PATIENTID" />
+      <result property="Doctor" column="DOCTOR" />
+      <result property="Doctortel" column="DOCTORTEL" />
+      <result property="Birthday" column="BIRTHDAY" />
+      <result property="Age" column="AGE" />
+      <result property="Ageunit" column="AGEUNIT" />
+      <result property="Samstate" column="SAMSTATE" />
+      <result property="Diagnostication" column="DIAGNOSTICATION" />
+      <result property="Customertestcodes" column="CUSTOMERTESTCODES" />
+      <result property="Customertestnames" column="CUSTOMERTESTNAMES" />
+      <result property="Datestcodes" column="DATESTCODES" />
+      <result property="Datestnames" column="DATESTNAMES" />
+      <result property="Status" column="STATUS" />
+      <result property="Remark" column="REMARK" />
+      <result property="Babycount" column="BABYCOUNT" />
+      <result property="Lmp" column="LMP" />
+      <result property="Lmpdate" column="LMPDATE" />
+      <result property="Uninevolumn" column="UNINEVOLUMN" />
+      <result property="Weight" column="WEIGHT" />
+      <result property="Height" column="HEIGHT" />
+      <result property="Bultrasonic" column="BULTRASONIC" />
+      <result property="Pregnant" column="PREGNANT" />
+      <result property="Enterby" column="ENTERBY" />
+      <result property="Enterbydate" column="ENTERBYDATE" />
+      <result property="Lastupdatedate" column="LASTUPDATEDATE" />
+      <result property="Createdate" column="CREATEDATE" />
+      <result property="Usertype" column="USERTYPE" />
+      <result property="Bodystyle" column="BODYSTYLE" />
+      <result property="Customercode" column="CUSTOMERCODE" />
+    </resultMap>
+  </resultMaps>
+  <statements>
+    <!--根据条件查询全部 zhangwei-->
+    <select id="Da.SelectDAOutspecimen" parameterClass="Hashtable" resultMap="DAOutspecimenResult">
+      SELECT OUTSPECIMENID AS Outspecimenid,REQUESTCODE AS Requestcode,HOSPSAMPLEID AS Hospsampleid,HOSPSAMPLENUMBER AS Hospsamplenumber,PATIENTNUMBER AS Patientnumber,BEDNUMBER AS Bednumber,SAMPLINGDATE AS Samplingdate,PATIENTSOURCE AS Patientsource,PATIENTNAME AS Patientname,SEX AS Sex,CACULATEAGE AS Caculateage,PATIENTTEL AS Patienttel,LOCATION AS Location,PATIENTID AS Patientid,DOCTOR AS Doctor,DOCTORTEL AS Doctortel,BIRTHDAY AS Birthday,AGE AS Age,AGEUNIT AS Ageunit,SAMSTATE AS Samstate,DIAGNOSTICATION AS Diagnostication,CUSTOMERTESTCODES AS Customertestcodes,CUSTOMERTESTNAMES AS Customertestnames,DATESTCODES AS Datestcodes,DATESTNAMES AS Datestnames,STATUS AS Status,REMARK AS Remark,BABYCOUNT AS Babycount,LMP AS Lmp,LMPDATE AS Lmpdate,UNINEVOLUMN AS Uninevolumn,WEIGHT AS Weight,HEIGHT AS Height,BULTRASONIC AS Bultrasonic,PREGNANT AS Pregnant,ENTERBY AS Enterby,ENTERBYDATE AS Enterbydate,LASTUPDATEDATE as Lastupdatedate,CREATEDATE AS Createdate,USERTYPE AS Usertype,BODYSTYLE AS Bodystyle
+      ,CUSTOMERCODE as Customercode
+      FROM DA_OUTSPECIMEN where 1 = 1
+      <isNotEmpty prepend="and" property="Outspecimenid">
+        Outspecimenid  != '$Outspecimenid$'
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="dtpBeginDate">
+        Enterbydate <![CDATA[>=]]>    to_date('$dtpBeginDate$','yyyy-MM-dd')
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="dtpEndDate">
+        Enterbydate <![CDATA[<=]]>    to_date('$dtpEndDate$','yyyy-MM-dd')
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="txtHospsamplenumber">
+        Hospsamplenumber = '$txtHospsamplenumber$'
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="txtHospsampleid">
+        Hospsampleid = '$txtHospsampleid$'
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="txtRequestcode">
+        Requestcode = '$txtRequestcode$'
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="Hospsamplenumber">
+        Hospsamplenumber like '%$Hospsamplenumber$%'
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="Hospsampleid">
+        Hospsampleid like '%$Hospsampleid$%'
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="Requestcode">
+        Requestcode like '%$Requestcode$%'
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="Patientname">
+        Patientname like '%$Patientname$%'
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="Patientsource">
+        Patientsource like '%$Patientsource$%'
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="Status">
+        Status = '4'
+      </isNotEmpty>
+    </select>
+    <!--根据达安条码发送订单信息1-->
+    <select id="Da.SelectDAOutspecimenTable" parameterClass="Hashtable">
+      SELECT OUTSPECIMENID AS Outspecimenid,REQUESTCODE AS RequestCode,HOSPSAMPLEID AS HospSampleid,HOSPSAMPLENUMBER AS HospSamplenumber,PATIENTNUMBER AS PatientNumber,BEDNUMBER AS BedNumber,SAMPLINGDATE AS SamplingDate,PATIENTNAME AS PatientName,SEX AS Sex,decode(AGE,null,'','','',AGE||decode(AGEUNIT,0,'岁',1,'月',2,'日',3, '小时',4,'')) AS Age,CACULATEAGE AS Caculateage,PATIENTTEL AS PatientTel,LOCATION AS SectionOffice,DOCTOR AS Doctor,DOCTORTEL AS DoctorTel,DIAGNOSTICATION AS Diagnostication,LMP AS Lmp,LMPDATE AS Lmpdate,BABYCOUNT AS BabyCount,UNINEVOLUMN AS UnineVolumn,BODYSTYLE AS Bodystyle,WEIGHT AS Weight,HEIGHT AS Height,BIRTHDAY AS Birthday,BULTRASONIC AS Bultrasonic,PREGNANT AS Pregnant,5 as Programid,DATESTCODES AS NaturalItem,CUSTOMERTESTNAMES AS NaturalItemDesc,CUSTOMERTESTCODES AS HospItemCode,REMARK AS Remark,ENTERBY as operateby,
+      ,Customercode as userName
+      FROM DA_OUTSPECIMEN where 1 = 1
+      <isNotEmpty prepend="and" property="Requestcode">
+        RequestCode = '$Requestcode$'
+      </isNotEmpty>
+    </select>
+    <!--根据达安条码发送订单信息2-->
+    <!--<select id="Da.SelectDAOutspecimenGrouptesTable" parameterClass="Hashtable">
+      select   v.TestCode as datestCode ,d.SubTestcode, decode(v.IsGroup,1,v.testname,' ') as grouptestname ,decode(v.IsGroup,1,v.TestCode,' ') as grouptestcode,
+      decode(v.IsGroup,1,d.subtestname,v.testname) as testname , decode(v.IsGroup,1,d.subTestCode,v.TestCode) as testcode
+      from  v_da_listests  v
+      left join v_da_subtest d on v.TestCode = d.TestCode
+      where 1 = 1
+      <isNotEmpty prepend="and" property="Datestcode">
+        v.TestCode = '$Datestcode$'
+      </isNotEmpty>
+    </select>-->
+    <!-- 根据医院条码 查询标本报表相关信息 zhangwei-->
+    <select id="Da.SelectDAOutspecimenByHospsampleid" parameterClass="Hashtable" >
+      SELECT  Requestcode, Hospsampleid,Hospsamplenumber, Patientname,Sex,Age,Ageunit,Customertestnames
+      FROM DA_OUTSPECIMEN where 1 = 1
+
+      <isNotEmpty prepend="and"  property="Hospsamplenumber">
+        Hospsamplenumber in ($Hospsamplenumber$)
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="Hospsampleid">
+        Hospsampleid in ($Hospsampleid$)
+      </isNotEmpty>
+    </select>
+    <!-- 根据医院条码 查询标本数量 zhangwei-->
+    <select id="Da.SelectDACountByHospsampleid" parameterClass="Hashtable" >
+      SELECT count(*) as count
+      FROM DA_OUTSPECIMEN where 1 = 1
+      <isNotEmpty prepend="and"  property="Hospsamplenumber">
+        Hospsamplenumber in ($Hospsamplenumber$)
+      </isNotEmpty>
+      <isNotEmpty prepend="and"  property="Hospsampleid">
+        Hospsampleid in ($Hospsampleid$)
+      </isNotEmpty>
+    </select>
+    <!--获取需要获取结果的RequestCode 不取半年以前的数据 zhouy-->
+    <select id="SelectRequestCodeByGetResult" >
+      select os.requestcode from Da_Outspecimen os where os.status<![CDATA[<]]>4 and os.createdate>sysdate-180
+    </select>
+    <!--获取需要发送订单 获取[已申请]状态的订单 获取三天 -->
+    <select id="SelectRequestCodeBySendOrders" resultMap="DAOutspecimenResult">
+      select OUTSPECIMENID AS Outspecimenid,REQUESTCODE AS Requestcode,HOSPSAMPLEID AS Hospsampleid,HOSPSAMPLENUMBER AS Hospsamplenumber,PATIENTNUMBER AS Patientnumber,BEDNUMBER AS Bednumber,SAMPLINGDATE AS Samplingdate,PATIENTSOURCE AS Patientsource,PATIENTNAME AS Patientname,SEX AS Sex,CACULATEAGE AS Caculateage,PATIENTTEL AS Patienttel,LOCATION AS Location,PATIENTID AS Patientid,DOCTOR AS Doctor,DOCTORTEL AS Doctortel,BIRTHDAY AS Birthday,AGE AS Age,AGEUNIT AS Ageunit,SAMSTATE AS Samstate,DIAGNOSTICATION AS Diagnostication,CUSTOMERTESTCODES AS Customertestcodes,CUSTOMERTESTNAMES AS Customertestnames,DATESTCODES AS Datestcodes,DATESTNAMES AS Datestnames,STATUS AS Status,REMARK AS Remark,BABYCOUNT AS Babycount,LMP AS Lmp,LMPDATE AS Lmpdate,UNINEVOLUMN AS Uninevolumn,WEIGHT AS Weight,HEIGHT AS Height,BULTRASONIC AS Bultrasonic,PREGNANT AS Pregnant,ENTERBY AS Enterby,ENTERBYDATE AS Enterbydate,LASTUPDATEDATE as Lastupdatedate,CREATEDATE AS Createdate,USERTYPE AS Usertype,BODYSTYLE AS Bodystyle
+      ,CUSTOMERCODE as Customercode
+      from Da_Outspecimen  where status=0 and createdate>sysdate-3
+    </select>
+    <!--插入zhangwei-->
+    <insert id="Da.InsertDAOutspecimen" parameterClass="DAOutspecimen">
+      INSERT INTO DA_OUTSPECIMEN
+      (OUTSPECIMENID,REQUESTCODE,HOSPSAMPLEID,HOSPSAMPLENUMBER,PATIENTNUMBER,BEDNUMBER,SAMPLINGDATE,PATIENTSOURCE,PATIENTNAME,SEX,CACULATEAGE,PATIENTTEL,LOCATION,PATIENTID,DOCTOR,DOCTORTEL,BIRTHDAY,AGE,AGEUNIT,SAMSTATE,DIAGNOSTICATION,CUSTOMERTESTCODES,CUSTOMERTESTNAMES,DATESTCODES,DATESTNAMES,STATUS,REMARK,BABYCOUNT,LMP,LMPDATE,UNINEVOLUMN,WEIGHT,HEIGHT,BULTRASONIC,PREGNANT,ENTERBY,ENTERBYDATE,LASTUPDATEDATE,CREATEDATE,USERTYPE,BODYSTYLE,CUSTOMERCODE)
+      VALUES(SEQ_DA_OUTSPECIMEN.Nextval,#Requestcode#,#Hospsampleid#,#Hospsamplenumber#,#Patientnumber#,#Bednumber#,#Samplingdate:DateTime:1/1/0001 12:00:00 AM#,#Patientsource#,#Patientname#,#Sex#,#Caculateage#,#Patienttel#,#Location#,#Patientid#,#Doctor#,#Doctortel#,#Birthday:DateTime:1/1/0001 12:00:00 AM#,#Age#,#Ageunit#,#Samstate#,#Diagnostication#,#Customertestcodes#,#Customertestnames#,#Datestcodes#,#Datestnames#,#Status#,#Remark#,#Babycount#,#Lmp#,#Lmpdate#,#Uninevolumn#,#Weight#,#Height#,#Bultrasonic#,#Pregnant#,#Enterby#,#Enterbydate:DateTime:1/1/0001 12:00:00 AM#,#Lastupdatedate:DateTime:1/1/0001 12:00:00 AM#,#Createdate:DateTime:1/1/0001 12:00:00 AM#,#Usertype#,#Bodystyle#,#Customercode#)
+    </insert>
+      <update id="Da.UpdateDAOutspecimen" parameterClass="DAOutspecimen">
+        UPDATE DA_OUTSPECIMEN
+        SET REQUESTCODE=#Requestcode#,HOSPSAMPLEID=#Hospsampleid#,HOSPSAMPLENUMBER=#Hospsamplenumber#,PATIENTNUMBER=#Patientnumber#,BEDNUMBER=#Bednumber#,SAMPLINGDATE=#Samplingdate#,PATIENTSOURCE=#Patientsource#,PATIENTNAME=#Patientname#,SEX=#Sex#,CACULATEAGE=#Caculateage#,PATIENTTEL=#Patienttel#,LOCATION=#Location#,PATIENTID=#Patientid#,DOCTOR=#Doctor#,DOCTORTEL=#Doctortel#,BIRTHDAY=#Birthday#,AGE=#Age#,AGEUNIT=#Ageunit#,SAMSTATE=#Samstate#,DIAGNOSTICATION=#Diagnostication#,CUSTOMERTESTCODES=#Customertestcodes#,CUSTOMERTESTNAMES=#Customertestnames#,DATESTCODES=#Datestcodes#,DATESTNAMES=#Datestnames#,STATUS=#Status#,REMARK=#Remark#,BABYCOUNT=#Babycount#,LMP=#Lmp#,LMPDATE=#Lmpdate#,UNINEVOLUMN=#Uninevolumn#,WEIGHT=#Weight#,HEIGHT=#Height#,BULTRASONIC=#Bultrasonic#,PREGNANT=#Pregnant#,ENTERBY=#Enterby#,ENTERBYDATE=#Enterbydate#,LASTUPDATEDATE=#Lastupdatedate#,CREATEDATE=#Createdate#,USERTYPE=#Usertype#,BODYSTYLE=#Bodystyle#,CUSTOMERCODE=#Customercode#
+        WHERE OUTSPECIMENID = #Outspecimenid#
+      </update>
+    <!--修改状态 zhangwei-->
+    <update id="Da.UpdateDAOutspecimenByID" parameterClass="Hashtable">
+      UPDATE DA_OUTSPECIMEN
+      SET STATUS = #status#,Lastupdatedate=getdate()
+      WHERE OUTSPECIMENID = #Outspecimenid#
+    </update>
+    <!--获取结果报告后根据RequestCode改状态 zhouy-->
+    <update id="UpdateDAOutspecimenByRequestCode" parameterClass="Hashtable">
+      UPDATE DA_OUTSPECIMEN
+      SET STATUS = #Status#,Lastupdatedate=getdate()
+      WHERE RequestCode = #RequestCode#
+    </update>
+    <!--根据医院条码更新状态  zhangwei-->
+    <update id="UpdateDAOutspecimenByHospsampleid" parameterClass="Hashtable">
+      UPDATE DA_OUTSPECIMEN
+      SET STATUS = #Status#,Lastupdatedate=getdate()
+      WHERE Hospsampleid = #Hospsampleid#  and  RequestCode= #requestcode#
+    </update>
+    <!--删除zhangwei-->
+    <delete id="Da.DeleteDAOutspecimenByReauestCode" parameterClass="string">
+      DELETE FROM DA_OUTSPECIMEN
+      WHERE RequestCode in ($value$)
+    </delete>
+    <delete id="Da.DeleteDAOutspecimen" parameterClass="string">
+      DELETE FROM DA_OUTSPECIMEN
+      WHERE OUTSPECIMENID in ($value$)
+    </delete>
+  </statements>
+</sqlMap>

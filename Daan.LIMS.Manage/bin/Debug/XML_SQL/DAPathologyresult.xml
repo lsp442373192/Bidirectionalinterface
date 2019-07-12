@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="Daan.Interface.Entity" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ibatis.apache.org/mapping">
+  <alias>
+    <typeAlias alias="DAPathologyresult"  type="Daan.Interface.Entity.DAPathologyresult,Daan.Interface.Entity" />
+  </alias>
+  <resultMaps>
+    <resultMap id="DAPathologyresultResult" class="Daan.Interface.Entity.DAPathologyresult">
+      <result property="Pathologyresultid" column="PATHOLOGYRESULTID" type="decimal" dbType="Real"/>
+      <result property="Requestcode" column="REQUESTCODE" type="string" dbType="varchar"/>
+      <result property="Hospsamplenumber" column="HOSPSAMPLENUMBER" type="string" dbType="varchar"/>
+      <result property="Hospsampleid" column="HOSPSAMPLEID" type="string" dbType="varchar"/>
+      <result property="Testid" column="TESTID" type="decimal" dbType="Real"/>
+      <result property="Parentid" column="PARENTID" type="decimal" dbType="Real"/>
+      <result property="Treelevel" column="TREELEVEL" type="decimal" dbType="Real"/>
+      <result property="Itemname" column="ITEMNAME" type="string" dbType="varchar"/>
+      <result property="Result" column="RESULT" type="string" dbType="varchar"/>
+      <result property="Displayorder" column="DISPLAYORDER" type="decimal" dbType="Real"/>
+      <result property="Createdate" column="CREATEDATE" type="DateTime" dbType="DateTime"/>
+    </resultMap>
+  </resultMaps>
+  <statements>
+
+    <select id="SelectDAPathologyresult" parameterClass="string" resultMap="DAPathologyresultResult">
+      SELECT PATHOLOGYRESULTID AS Pathologyresultid,REQUESTCODE AS Requestcode,HOSPSAMPLENUMBER AS Hospsamplenumber,HOSPSAMPLEID AS Hospsampleid,TESTID AS Testid,PARENTID AS Parentid,TREELEVEL AS Treelevel,ITEMNAME AS Itemname,RESULT AS Result,DISPLAYORDER AS Displayorder,CREATEDATE AS Createdate
+      FROM DA_PATHOLOGYRESULT
+      <dynamic prepend="WHERE">
+        <isParameterPresent>
+          PATHOLOGYRESULTID = #value#
+        </isParameterPresent>
+      </dynamic>
+    </select>
+    <insert id="InsertDAPathologyresult" parameterClass="DAPathologyresult">
+      INSERT INTO DA_PATHOLOGYRESULT
+      (REQUESTCODE,HOSPSAMPLENUMBER,HOSPSAMPLEID,TESTID,PARENTID,TREELEVEL,ITEMNAME,RESULT,DISPLAYORDER,CREATEDATE)
+      VALUES(#Requestcode#,#Hospsamplenumber#,#Hospsampleid#,#Testid#,#Parentid#,#Treelevel#,#Itemname#,#Result#,#Displayorder#,getdate())
+    </insert>
+    <update id="UpdateDAPathologyresult" parameterClass="DAPathologyresult">
+      UPDATE DA_PATHOLOGYRESULT
+      SET PATHOLOGYRESULTID=#Pathologyresultid#,REQUESTCODE=#Requestcode#,HOSPSAMPLENUMBER=#Hospsamplenumber#,HOSPSAMPLEID=#Hospsampleid#,TESTID=#Testid#,PARENTID=#Parentid#,TREELEVEL=#Treelevel#,ITEMNAME=#Itemname#,RESULT=#Result#,DISPLAYORDER=#Displayorder#
+      WHERE PATHOLOGYRESULTID = #Pathologyresultid#
+    </update>
+    <delete id="DeleteDAPathologyresultByRequestCode" parameterClass="string">
+      DELETE FROM DA_PATHOLOGYRESULT
+      WHERE REQUESTCODE = #Requestcode#
+    </delete>
+    <select id="SelectIsFullPathologyResultByRequestCode" parameterClass="string">
+      select count(requestcode) from da_pathologyresult p where p.requestcode=#value#
+    </select>
+  </statements>
+
+</sqlMap>

@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="Daan.Interface.Entity" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ibatis.apache.org/mapping">
+  <alias>
+    <typeAlias alias="VDaLisrequest"  type="Daan.Interface.Entity.VDaLisrequest,Daan.Interface.Entity" />
+  </alias>
+  <resultMaps>
+    <resultMap id="VDaLisrequestResult" class="Daan.Interface.Entity.VDaLisrequest">
+      <result property="Hospsampleid" column="HOSPSAMPLEID" />
+      <result property="Hospsamplenumber" column="HOSPSAMPLENUMBER" />
+      <result property="Patientnumber" column="PATIENTNUMBER" />
+      <result property="Bednumber" column="BEDNUMBER" />
+      <result property="Samplingdate" column="SAMPLINGDATE" />
+      <result property="Pname" column="PNAME" />
+      <result property="Sex" column="SEX" />
+      <result property="Birthday" column="BIRTHDAY" />
+      <result property="Age" column="AGE" />
+      <result property="Ageunit" column="AGEUNIT" />
+      <result property="Patienttel" column="PATIENTTEL" />
+      <result property="Sectionoffice" column="SECTIONOFFICE" />
+      <result property="Doctor" column="DOCTOR" />
+      <result property="Doctortel" column="DOCTORTEL" />
+      <result property="Diagnostication" column="DIAGNOSTICATION" />
+      <result property="Babycount" column="BABYCOUNT" />
+      <result property="Lmp" column="LMP" />
+      <result property="Lmpdate" column="LMPDATE" />
+      <result property="Uninevolumn" column="UNINEVOLUMN" />
+      <result property="Weight" column="WEIGHT" />
+      <result property="Height" column="HEIGHT" />
+      <result property="Bultrasonic" column="BULTRASONIC" />
+      <result property="Pregnant" column="PREGNANT" />
+      <result property="Enterdate" column="ENTERDATE" />
+      <result property="Bodystyle" column="BODYSTYLE" />
+    </resultMap>
+  </resultMaps>
+  <statements>
+    <select id="Da.SelectVDaLisrequest" parameterClass="Hashtable" resultMap="VDaLisrequestResult">
+      SELECT Hospsampleid,Hospsamplenumber,Patientnumber,Bednumber,Samplingdate,Pname,Sex,Birthday,to_char(Age,'9999') as age,Ageunit,Patienttel,Sectionoffice,Doctor,
+      Doctortel,Diagnostication,Babycount,Lmp,Lmpdate,Uninevolumn,Weight,Height,Bultrasonic,Pregnant,Enterdate,Bodystyle
+      FROM V_DA_LISREQUEST where 1 = 1
+      <isNotEmpty prepend="and" property="Hospsampleid">
+        Hospsampleid = '$Hospsampleid$'
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="Hospsamplenumber">
+        Hospsamplenumber = '$Hospsamplenumber$'
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="dtpBeginDate">
+        Enterdate <![CDATA[>=]]>    to_date('$dtpBeginDate$','yyyy-MM-dd')
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="dtpEndDate">
+        Enterdate <![CDATA[<=]]>    to_date('$dtpEndDate$','yyyy-MM-dd')
+      </isNotEmpty>    
+    </select>
+  </statements>
+</sqlMap>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="Daan.Interface.Entity" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ibatis.apache.org/mapping">
+  <alias>
+    <typeAlias alias="DAConfig"  type="Daan.Interface.Entity.DAConfig,Daan.Interface.Entity" />
+  </alias>
+  <resultMaps>
+    <resultMap id="DAConfigResult" class="Daan.Interface.Entity.DAConfig">
+      <result property="DaConfigid" column="DACONFIGID" />
+      <result property="Dbversion" column="DBVERSION" />
+      <result property="Hospname" column="HOSPNAME" />
+      <result property="Address" column="ADDRESS" />
+      <result property="Username" column="USERNAME" />
+      <result property="Password" column="PASSWORD" />
+      <result property="Interval" column="INTERVAL"/>
+      <result property="Usehospcode" column="USEHOSPCODE" />
+      <result property="Sitecode" column="SITECODE" />
+      <result property="Model" column="MODEL" />
+      <result property="Lastupdate" column="LASTUPDATE" />
+    </resultMap>
+  </resultMaps>
+  <statements>
+
+    <select id="SelectDAConfig" parameterClass="decimal" resultMap="DAConfigResult">
+      SELECT DA_CONFIGID AS DaConfigid,DBVERSION AS Dbversion,HOSPNAME AS Hospname,ADDRESS AS Address,USERNAME AS Username,PASSWORD AS Password,INTERVAL AS Interval,USEHOSPCODE AS Usehospcode,SITECODE AS Sitecode,Model as MODEL,Lastupdate as LASTUPDATE
+      FROM DA_CONFIG where DA_CONFIGID=#value#
+    </select>
+    <insert id="InsertDAConfig" parameterClass="DAConfig">
+      INSERT INTO DA_CONFIG
+      (da_configid,dbversion,HOSPNAME,ADDRESS,USERNAME,PASSWORD,INTERVAL,USEHOSPCODE,SITECODE,MODEL,LASTUPDATE)
+      VALUES(#da_configid#,#dbversion#,#Hospname#,#Address#,#Username#,#Password#,#Interval#,#Usehospcode#,#Sitecode#,'0',getdate())
+      <!--(da_configid,DBVERSION,HOSPNAME,ADDRESS,USERNAME,PASSWORD,INTERVAL,USEHOSPCODE,SITECODE,MODEL)
+      VALUES(#DA_CONFIGID#,#Dbversion#,#Hospname#,#Address#,#Username#,#Password#,#Interval#,#Usehospcode#,#Sitecode#,'0')-->
+    </insert>
+    <update id="UpdateDAConfig" parameterClass="DAConfig">
+      UPDATE DA_CONFIG
+      SET DBVERSION=#Dbversion#,HOSPNAME=#Hospname#,ADDRESS=#Address#,USERNAME=#Username#,PASSWORD=#Password#,INTERVAL=#Interval#,SITECODE=#Sitecode#,LASTUPDATE=getdate()
+    </update>
+    <delete id="DeleteDAConfig" parameterClass="string">
+      DELETE FROM DA_CONFIG
+      WHERE DA_CONFIGID = #value#
+    </delete>
+  </statements>
+</sqlMap>

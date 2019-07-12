@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="Daan.Interface.Entity" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ibatis.apache.org/mapping">
+	<alias>
+		<typeAlias alias="DADictcustomer" type="Daan.Interface.Entity.DADictcustomer,Daan.Interface.Entity" />
+	</alias>
+	<resultMaps>
+		<resultMap id="DictcustomerResult" class="Daan.Interface.Entity.DADictcustomer" >
+			<result property="Dictcustomerid" column="DICTCUSTOMERID" />
+			<result property="Customercode" column="CUSTOMERCODE" />
+			<result property="Fastcode" column="FASTCODE" />
+			<result property="Customername" column="CUSTOMERNAME" />
+		</resultMap>
+	</resultMaps>
+	<statements>
+
+		<select id="SelectDictcustomer" parameterClass="string" resultClass="DADictcustomer">
+			SELECT DICTCUSTOMERID AS Dictcustomerid,CUSTOMERCODE AS Customercode,FASTCODE AS Fastcode,CUSTOMERNAME AS Customername
+			FROM da_dictcustomer WHERE 1 = 1
+			<isNotEmpty prepend="and" property="Dictcustomerid">
+				DICTCUSTOMERID = #Dictcustomerid#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="Customercode">
+				Customercode = #Customercode#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="Customername">
+				Customername = #Customername#
+			</isNotEmpty>
+		</select>
+		<insert id="InsertDictcustomer" parameterClass="DADictcustomer">
+			INSERT INTO da_dictcustomer
+			(DICTCUSTOMERID,CUSTOMERCODE,FASTCODE,CUSTOMERNAME)
+			VALUES(#Dictcustomerid#,#Customercode#,#Fastcode#,#Customername#)
+		</insert>
+		<update id="UpdateDictcustomer" parameterClass="DADictcustomer">
+			UPDATE da_dictcustomer
+			SET DICTCUSTOMERID=#Dictcustomerid#,CUSTOMERCODE=#Customercode#,FASTCODE=#Fastcode#,CUSTOMERNAME=#Customername#
+			WHERE DICTCUSTOMERID = #Dictcustomerid#
+		</update>
+		<delete id="DeleteDictcustomer" parameterClass="string">
+			DELETE FROM da_dictcustomer
+			WHERE DICTCUSTOMERID = #value#
+		</delete>
+	</statements>
+</sqlMap>

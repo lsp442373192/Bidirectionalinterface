@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="Daan.Interface.Entity" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ibatis.apache.org/mapping">
+	<alias>
+		<typeAlias alias="DAErrorlog"  type="Daan.Interface.Entity.DAErrorlog,Daan.Interface.Entity" />
+	</alias>
+	<resultMaps>
+		<resultMap id="DAErrorlogResult" class="Daan.Interface.Entity.DAErrorlog">
+			<result property="Errorlogid" column="ERRORLOGID" />
+			<result property="Dictuserid" column="DICTUSERID" />
+			<result property="Usercode" column="USERCODE" />
+			<result property="Username" column="USERNAME" />
+			<result property="Createdate" column="CREATEDATE" />
+			<result property="Opcontent" column="OPCONTENT" />
+			<result property="Usertype" column="USERTYPE" />
+			<result property="Ipaddress" column="IPADDRESS" />
+			<result property="Machinename" column="MACHINENAME" />
+		</resultMap>
+	</resultMaps>
+	<statements>
+
+		<select id="SelectDAErrorlog" parameterClass="string" resultMap="DAErrorlogResult">
+			SELECT ERRORLOGID AS Errorlogid,DICTUSERID AS Dictuserid,USERCODE AS Usercode,USERNAME AS Username,CREATEDATE AS Createdate,OPCONTENT AS Opcontent,USERTYPE AS Usertype,IPADDRESS AS Ipaddress,MACHINENAME AS Machinename
+			FROM DA_ERRORLOG  where 1 = 1
+			<isNotEmpty prepend="and" property="Requestcode">
+				Requestcode = '$Requestcode$'
+			</isNotEmpty>
+		</select>
+		<!--根据条件获取日志 fenghp-->
+		<select id="Da.SelectDAErrorlogByDate" parameterClass="string" resultMap="DAErrorlogResult">
+			SELECT ERRORLOGID AS Errorlogid,DICTUSERID AS Dictuserid,USERCODE AS Usercode,USERNAME AS Username,CREATEDATE AS Createdate,OPCONTENT AS Opcontent,USERTYPE AS Usertype,IPADDRESS AS Ipaddress,MACHINENAME AS Machinename
+			FROM DA_ERRORLOG  where 1 = 1
+			<isNotNull prepend="and" property="Createdate">
+				Createdate <![CDATA[>=]]>'$Createdate$'
+			</isNotNull>
+		</select>
+		<insert id="Da.InsertDAErrorlog" parameterClass="DAErrorlog">
+			INSERT INTO DA_ERRORLOG
+			(DICTUSERID,USERCODE,USERNAME,CREATEDATE,OPCONTENT,USERTYPE,IPADDRESS,MACHINENAME)
+			VALUES(#Dictuserid#,#Usercode#,#Username#,#Createdate#,#Opcontent#,#Usertype#,#Ipaddress#,#Machinename#)
+		</insert>
+		<update id="Da.UpdateDAErrorlog" parameterClass="DAErrorlog">
+			UPDATE DA_ERRORLOG
+			SET ERRORLOGID=#Errorlogid#,DICTUSERID=#Dictuserid#,USERCODE=#Usercode#,USERNAME=#Username#,CREATEDATE=#Createdate#,OPCONTENT=#Opcontent#,USERTYPE=#Usertype#,IPADDRESS=#Ipaddress#,MACHINENAME=#Ipaddress#
+			WHERE ERRORLOGID = #Errorlogid#
+		</update>
+		<delete id="Da.DeleteDAErrorlog" parameterClass="string">
+			DELETE FROM DA_ERRORLOG
+			WHERE ERRORLOGID = #value#
+		</delete>
+	</statements>
+</sqlMap>

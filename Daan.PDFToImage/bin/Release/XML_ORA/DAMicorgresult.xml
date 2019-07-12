@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="Daan.Interface.Entity" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ibatis.apache.org/mapping">
+  <alias>
+    <typeAlias alias="DAMicorgresult"  type="Daan.Interface.Entity.DAMicorgresult,Daan.Interface.Entity" />
+  </alias>
+  <resultMaps>
+    <resultMap id="DAMicorgresultResult" class="Daan.Interface.Entity.DAMicorgresult">
+      <result property="Micorgresultid" column="MICORGRESULTID" type="decimal" dbType="Real"/>
+      <result property="Requestcode" column="REQUESTCODE" type="string" dbType="varchar"/>
+      <result property="Hospsampleid" column="HOSPSAMPLEID" type="string" dbType="varchar"/>
+      <result property="Hospsamplenumber" column="HOSPSAMPLENUMBER" type="string" dbType="varchar"/>
+      <result property="Createdate" column="CREATEDATE" type="DateTime" dbType="DateTime"/>
+      <result property="Engorgname" column="ENGORGNAME" type="string" dbType="varchar"/>
+      <result property="Organismcode" column="ORGANISMCODE" type="string" dbType="varchar"/>
+      <result property="Organismname" column="ORGANISMNAME" type="string" dbType="varchar"/>
+      <result property="Tips" column="TIPS" type="string" dbType="varchar"/>
+      <result property="Quantity" column="QUANTITY" type="string" dbType="varchar"/>
+      <result property="Quantitycomment" column="QUANTITYCOMMENT" type="string" dbType="varchar"/>
+      <result property="Displayorder" column="DISPLAYORDER" type="decimal" dbType="Real"/>
+      <result property="Reportoption" column="REPORTOPTION" type="string" dbType="varchar"/>
+    </resultMap>
+  </resultMaps>
+  <statements>
+
+    <select id="SelectDAMicorgresult" parameterClass="string" resultMap="DAMicorgresultResult">
+      SELECT MICORGRESULTID AS Micorgresultid,REQUESTCODE AS Requestcode,HOSPSAMPLEID AS Hospsampleid,HOSPSAMPLENUMBER AS Hospsamplenumber,CREATEDATE AS Createdate,ENGORGNAME AS Engorgname,ORGANISMCODE AS Organismcode,ORGANISMNAME AS Organismname,TIPS AS Tips,QUANTITY AS Quantity,QUANTITYCOMMENT AS Quantitycomment,DISPLAYORDER AS Displayorder,REPORTOPTION AS Reportoption
+      FROM DA_MICORGRESULT
+      <dynamic prepend="WHERE">
+        <isParameterPresent>
+          MICORGRESULTID = #value#
+        </isParameterPresent>
+      </dynamic>
+    </select>
+    <insert id="InsertDAMicorgresult" parameterClass="DAMicorgresult">
+      INSERT INTO DA_MICORGRESULT
+      (MICORGRESULTID,REQUESTCODE,HOSPSAMPLEID,HOSPSAMPLENUMBER,CREATEDATE,ENGORGNAME,ORGANISMCODE,ORGANISMNAME,TIPS,QUANTITY,QUANTITYCOMMENT,DISPLAYORDER,REPORTOPTION)
+      VALUES(#Micorgresultid#,#Requestcode#,#Hospsampleid#,#Hospsamplenumber#,sysdate,#Engorgname#,#Organismcode#,#Organismname#,#Tips#,#Quantity#,#Quantitycomment#,#Displayorder#,#Reportoption#)
+    </insert>
+    <update id="UpdateDAMicorgresult" parameterClass="DAMicorgresult">
+      UPDATE DA_MICORGRESULT
+      SET MICORGRESULTID=#Micorgresultid#,REQUESTCODE=#Requestcode#,HOSPSAMPLEID=#Hospsampleid#,HOSPSAMPLENUMBER=#Hospsamplenumber#,CREATEDATE=#Createdate#,ENGORGNAME=#Engorgname#,ORGANISMCODE=#Organismcode#,ORGANISMNAME=#Organismname#,TIPS=#Tips#,QUANTITY=#Quantity#,QUANTITYCOMMENT=#Quantitycomment#,DISPLAYORDER=#Displayorder#,REPORTOPTION=#Reportoption#
+      WHERE MICORGRESULTID = #Micorgresultid#
+    </update>
+    <delete id="DeleteDAMicorgresultByRequestCode" parameterClass="string">
+      DELETE FROM DA_MICORGRESULT
+      WHERE REQUESTCODE=#Requestcode#
+    </delete>
+  </statements>
+</sqlMap>

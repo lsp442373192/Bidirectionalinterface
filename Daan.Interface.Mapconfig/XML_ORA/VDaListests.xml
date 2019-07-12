@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="Daan.Interface.Entity" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ibatis.apache.org/mapping">
+	<alias>
+		<typeAlias alias="VDaListests"  type="Daan.Interface.Entity.VDALisrequest,Daan.Interface.Entity" />
+	</alias>
+	<resultMaps>
+		<resultMap id="VDaListestsResult" class="Daan.Interface.Entity.VDAListests">
+			<result property="Testcode" column="TESTCODE" />
+			<result property="Testname" column="TESTNAME" />
+			<result property="Shortname" column="SHORTNAME" />
+			<result property="Englishname" column="ENGLISHNAME" />
+			<result property="Engshortname" column="ENGSHORTNAME" />
+			<result property="Testtype" column="TESTTYPE" />
+			<result property="Fastcode" column="FASTCODE" />
+			<result property="Testmethod" column="TESTMETHOD" />
+			<result property="Isgroup" column="ISGROUP" />
+		</resultMap>
+		<resultMap id="VDaListestsTestMapResult" class="Daan.Interface.Entity.VDAListests">
+			<result property="Testcode" column="TESTCODE" />
+			<result property="Testname" column="TESTNAME" />
+			<result property="Shortname" column="SHORTNAME" />
+			<result property="Englishname" column="ENGLISHNAME" />
+			<result property="Engshortname" column="ENGSHORTNAME" />
+			<result property="Testtype" column="TESTTYPE" />
+			<result property="Fastcode" column="FASTCODE" />
+			<result property="Testmethod" column="TESTMETHOD" />
+			<result property="Isgroup" column="ISGROUP" />
+			<result property="Testmapid" column="TESTMAPID" />
+			<result property="Datestcode" column="DATESTCODE" />
+			<result property="Datestname" column="DATESTNAME" />
+			<result property="Customertestcode" column="CUSTOMERTESTCODE" />
+			<result property="Customertestname" column="CUSTOMERTESTNAME" />
+		</resultMap>
+    <resultMap id="VDaListestsTestCodeResult" class="Daan.Interface.Entity.VDAListests">
+      <result property="Testtype" column="TESTTYPE" />
+      <result property="CustomerGroupCode" column="CUSTOMERGROUPCODE" />
+      <result property="CustomerGroupName" column="CUSTOMERGROUPNAME" />
+      <result property="Subtestcode" column="SUBTESTCODE" />
+      <result property="Subtestname" column="SUBTESTNAME" />
+      <result property="DaGroupCode" column="DAGROUPCODE" />
+      <result property="DaGroupName" column="DAGROUPNAME" />
+      <result property="Datestcode" column="DATESTCODE" />
+      <result property="Datestname" column="DATESTNAME" />
+    </resultMap>
+    <resultMap id="VDaSubtest" class="Daan.Interface.Entity.VDaSubtest">
+      <result property="testcode" column="TESTCODE" />
+      <result property="subtestcode" column="SUBTESTCODE" />
+      <result property="subtestname" column="SUBTESTNAME" />
+    </resultMap>
+	</resultMaps>
+	<statements>
+		<select id="SelectVDaListestsresult" parameterClass="Hashtable" resultMap="VDaListestsResult">
+			SELECT Testcode,Testname,Shortname,Englishname,Engshortname,Testtype,Fastcode,Testmethod,Isgroup FROM  V_DA_LISTESTS where 1=1 
+			<isNotEmpty prepend="and" property="strKey">
+				(Testcode like '%$strKey$%' or Testname like  '%$strKey$%' or Englishname like  '%$strKey$%' or Engshortname like  '%$strKey$%')
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="Testcode">
+				Testcode = #Testcode#
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="Testname">
+				Testname = #Testname#
+			</isNotEmpty>
+		</select>
+    <!---查询数据插入DA_Result表 张巍-->
+    <select id="Da.GetVDaListestsresultList" parameterClass="Hashtable" resultMap="VDaListestsTestCodeResult">
+      select a.Testtype,a.Testcode as CustomerGroupCode,a.Testname as CustomerGroupName  ,b.Subtestcode, b.Subtestname,
+      '' as DaGroupCode,'' as DaGroupName,'' as Datestcode,'' as Datestname   from V_DA_LISTESTS a
+      left join V_DA_SUBTEST b  on a.TestCode = b.TestCode where 1 = 1
+      <!--select a.Testtype,a.Testcode as CustomerGroupCode,a.Testname as CustomerGroupName  ,b.Subtestcode, b.Subtestname,
+      '' as DaGroupCode,'' as DaGroupName,'' as Datestcode,'' as Datestname   from V_DA_LISTESTS a
+      , V_DA_SUBTEST b  where  a.TestCode = b.TestCode(+) and 1 = 1--> <!--oracel 8i 数据库采用这个方式-->
+      <isNotEmpty prepend="and" property="Testcode">
+        a.Testcode = #Testcode#
+      </isNotEmpty>
+    </select>
+    <select id="Da.GetVDaListestsresultListTable" parameterClass="Hashtable">
+      select  decode(v.IsGroup,1,v.testname,' ') as grouptestname ,decode(v.IsGroup,1,v.TestCode,' ') as grouptestcode,
+      decode(v.IsGroup,1,d.subtestname,v.testname) as testname , decode(v.IsGroup,1,d.subTestCode,v.TestCode) as testcode
+      from  v_da_listests  v
+      left join v_da_subtest d on v.TestCode = d.TestCode
+      where 1 = 1
+      <isNotEmpty prepend="and" property="Testcode">
+        v.Testcode = #Testcode#
+      </isNotEmpty>
+    </select>
+    
+    <select id="Da.GetVDaListestsresultByCode" parameterClass="Hashtable" resultMap="VDaListestsTestCodeResult">
+      select a.Testtype,a.Testcode as CustomerGroupCode,a.Testname as CustomerGroupName, <!---->
+      b.Subtestcode,  b.Subtestname,
+      c.Datestcode as DaGroupCode,
+      c.Datestname  as DaGroupName,
+      d.Datestcode,
+      d.Datestname
+      from V_DA_LISTESTS a left join V_DA_SUBTEST b on a.TestCode = b.TestCode
+      left join DA_TestMap  c on a.TestCode = c.customertestcode
+      left join da_testmap d on (d.datestcode = b.SubTestcode) where 1 = 1
+      <isNotEmpty prepend="and" property="Testcode">
+        a.Testcode = #Testcode#
+      </isNotEmpty>
+    </select>
+    <select id="Da.GetSutestList" resultMap="VDaSubtest">
+       select * from V_DA_SUBTEST
+    </select>
+    
+		<select id="SelectVDaListestTestMapsresult" parameterClass="Hashtable" resultMap="VDaListestsTestMapResult">
+			SELECT Testcode,Testname,Shortname,Englishname,Engshortname,Testtype,Fastcode,Testmethod,Isgroup,
+			Testmapid,Datestcode,Datestname,Customertestcode,Customertestname
+			FROM  V_DA_LISTESTS a
+			left join da_testmap b  on a.testcode=b.CUSTOMERTESTCODE
+			where 1=1
+			<isNotEmpty prepend="and" property="strKey">
+				Testcode like '%$strKey$%' or Testname like  '%$strKey$%' or Englishname like  '%$strKey$%' or Engshortname like  '%$strKey$%'
+			</isNotEmpty>
+		</select>
+	</statements>
+</sqlMap>

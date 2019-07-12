@@ -1,0 +1,13 @@
+﻿<database>
+  <!--<databasetype>1</databasetype>
+  <userid>sa</userid>
+  <password>sa</password>
+  <dataname>ceshi</dataname>
+  <datasource>202.116.104.43\HOSPINTERFACE</datasource>-->
+
+  <databasetype>1</databasetype>
+  <userid>sa</userid>
+  <password>sa</password>
+  <dataname>dklisdj1</dataname>
+  <datasource>10.10.40.48</datasource>
+</database>

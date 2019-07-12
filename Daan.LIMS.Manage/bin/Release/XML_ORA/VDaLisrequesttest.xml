@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="Daan.Interface.Entity" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ibatis.apache.org/mapping">
+  <alias>
+    <typeAlias alias="VDaLisrequesttest"  type="Daan.Interface.Entity.VDaLisrequesttest,Daan.Interface.Entity" />
+  </alias>
+  <resultMaps>
+    <resultMap id="VDaLisrequesttestResult" class="Daan.Interface.Entity.VDaLisrequesttest">
+      <result property="Hospsampleid" column="HOSPSAMPLEID" />
+      <result property="Hospsamplenumber" column="HOSPSAMPLENUMBER" />
+      <result property="Patientnumber" column="PATIENTNUMBER" />
+      <result property="Testcode" column="TESTCODE" />
+      <result property="Testname" column="TESTNAME" />
+    </resultMap>
+
+    <resultMap id="VDaLisrequesttestResultList" class="Daan.Interface.Entity.VDaLisrequesttest">
+      <result property="Hospsampleid" column="HOSPSAMPLEID" />
+      <result property="Hospsamplenumber" column="HOSPSAMPLENUMBER" />
+      <result property="Testcode" column="TESTCODE" />
+      <result property="Testname" column="TESTNAME" />
+      <result property="Datestcode" column="DATESTCODE" />
+      <result property="Datestname" column="DATESTNAME" />
+      
+    </resultMap>
+  </resultMaps>
+  <statements>
+    <!--根据医院条码  zhangwei-->
+    <select id="Da.SelectVDaLisrequesttest" parameterClass="Hashtable" resultMap="VDaLisrequesttestResult">
+      SELECT *
+      FROM v_da_lisrequesttest where 1 = 1
+      <isNotEmpty prepend="and" property="Hospsampleid">
+        Hospsampleid = '$Hospsampleid$'
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="Hospsamplenumber">
+        Hospsamplenumber = '$Hospsamplenumber$'
+      </isNotEmpty>
+    </select>
+    <!-- 查询医院和达安项目代码zhangwei-->
+    <select id="Da.SelectVDaLisrequesttestList" parameterClass="Hashtable" resultMap="VDaLisrequesttestResultList">
+      select b.Hospsampleid ,b.Hospsamplenumber,b.TestCode,b.testname,a.datestcode,a.datestname from v_da_lisrequesttest b left join da_testmap a
+      on (b.TestCode = a.customertestcode) where 1= 1
+      <isNotEmpty prepend="and" property="Hospsampleid">
+        b.Hospsampleid = '$Hospsampleid$'
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="Hospsamplenumber">
+        Hospsamplenumber = '$Hospsamplenumber$'
+      </isNotEmpty>
+    </select>
+  </statements>
+</sqlMap>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="Daan.Interface.Entity" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ibatis.apache.org/mapping">
+  <alias>
+    <typeAlias alias="DATestmap"  type="Daan.Interface.Entity.DATestmap,Daan.Interface.Entity" />
+  </alias>
+  <resultMaps>
+    <resultMap id="DATestmapResult" class="Daan.Interface.Entity.DATestmap">
+      <result property="Testmapid" column="TESTMAPID" />
+      <result property="Datestcode" column="DATESTCODE" />
+      <result property="Datestname" column="DATESTNAME" />
+      <result property="Customertestcode" column="CUSTOMERTESTCODE" />
+      <result property="Customertestname" column="CUSTOMERTESTNAME" />
+      <result property="Createtime" column="CREATETIME" />
+      <result property="Lastupdate" column="LASTUPDATE" />
+    </resultMap>
+  </resultMaps>
+  <statements>
+
+    <select id="Da.SelectDATestmap" parameterClass="Hashtable" resultMap="DATestmapResult">
+      SELECT TESTMAPID AS Testmapid,DATESTCODE AS Datestcode,DATESTNAME AS Datestname,CUSTOMERTESTCODE AS Customertestcode,CUSTOMERTESTNAME AS Customertestname,CREATETIME AS Createtime,Lastupdate as LASTUPDATE
+      FROM DA_TESTMAP where 1 = 1
+      <isNotEmpty prepend="and" property="Customertestcode">
+        Customertestcode = #Customertestcode#
+      </isNotEmpty>
+    </select>
+    <insert id="InsertDATestmap" parameterClass="DATestmap">
+      INSERT INTO DA_TESTMAP
+      (DATESTCODE,DATESTNAME,CUSTOMERTESTCODE,CUSTOMERTESTNAME,CREATETIME,LASTUPDATE)
+      VALUES(#Datestcode#,#Datestname#,#Customertestcode#,#Customertestname#,#Createtime#,getdate())
+    </insert>
+    <update id="UpdateDATestmap" parameterClass="DATestmap">
+      UPDATE DA_TESTMAP
+      SET DATESTCODE=#Datestcode#,DATESTNAME=#Datestname#,CUSTOMERTESTCODE=#Customertestcode#,CUSTOMERTESTNAME=#Customertestname#,CREATETIME=#Createtime#,LASTUPDATE=getdate()
+      WHERE TESTMAPID = #Testmapid#
+    </update>
+    <delete id="DeleteDATestmap" parameterClass="string">
+      DELETE FROM DA_TESTMAP
+      WHERE CUSTOMERTESTCODE = #value#
+    </delete>
+
+    <select id="Da.SelectDATestmapCheck" resultMap="DATestmapResult">
+      select a.customertestcode,a.customertestname from da_testmap a
+      left join da_dicttestitem b on a.datestcode=b.datestcode
+      --where b.datestcode is null
+      group by a.customertestcode,a.customertestname
+      having count(testmapid)<![CDATA[<>]]>1 or max(b.datestcode) is null
+    </select>
+  </statements>
+</sqlMap>

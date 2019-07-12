@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="Daan.Interface.Entity" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ibatis.apache.org/mapping">
+  <alias>
+    <typeAlias alias="DAOperationlog"  type="Daan.Interface.Entity.DAOperationlog,Daan.Interface.Entity" />
+  </alias>
+  <resultMaps>
+    <resultMap id="DAOperationlogResult" class="Daan.Interface.Entity.DAOperationlog">
+      <result property="Operationlogid" column="OPERATIONLOGID" />
+      <result property="Dictuserid" column="DICTUSERID" />
+      <result property="Usercode" column="USERCODE" />
+      <result property="Username" column="USERNAME" />
+      <result property="Optype" column="OPTYPE" />
+      <result property="Createdate" column="CREATEDATE" />
+      <result property="Opcontent" column="OPCONTENT" />
+      <result property="Usertype" column="USERTYPE" />
+      <result property="Requestcode" column="REQUESTCODE" />
+      <result property="Hospsampleid" column="HOSPSAMPLEID" />
+      <result property="Hospsamplenumber" column="HOSPSAMPLENUMBER" />
+    </resultMap>
+  </resultMaps>
+    <statements>
+      <!--根据达安条码查询节点信息 zhangwei-->
+      <select id="Da.SelectDAOperationlogByRequestcode" parameterClass="Hashtable" resultMap="DAOperationlogResult">
+        SELECT OPERATIONLOGID AS Operationlogid,DICTUSERID AS Dictuserid,USERCODE AS Usercode,USERNAME AS Username,OPTYPE AS Optype,CREATEDATE AS Createdate,OPCONTENT AS Opcontent,USERTYPE AS Usertype,REQUESTCODE AS Requestcode,HOSPSAMPLEID AS Hospsampleid, HOSPSAMPLENUMBER AS Hospsamplenumber
+        FROM DA_OPERATIONLOG  where 1 = 1
+        <isNotEmpty prepend="and" property="Requestcode">
+          Requestcode = '$Requestcode$'
+        </isNotEmpty>
+      </select>
+
+
+      <select id="SelectDAOperationlog" parameterClass="string" resultMap="DAOperationlogResult">
+        SELECT OPERATIONLOGID AS Operationlogid,DICTUSERID AS Dictuserid,USERCODE AS Usercode,USERNAME AS Username,OPTYPE AS Optype,CREATEDATE AS Createdate,OPCONTENT AS Opcontent,USERTYPE AS Usertype,REQUESTCODE AS Requestcode, HOSPSAMPLEID AS Hospsampleid, HOSPSAMPLENUMBER AS Hospsamplenumber
+        FROM DA_OPERATIONLOG
+        <dynamic prepend="WHERE">
+          <isParameterPresent>
+            OPERATIONLOGID = #value#
+          </isParameterPresent>
+        </dynamic>
+      </select>
+      <!--插入 zhangwei-->
+      <insert id="InsertDAOperationlog" parameterClass="DAOperationlog">
+        INSERT INTO DA_OPERATIONLOG
+        (DICTUSERID,USERCODE,USERNAME,OPTYPE,CREATEDATE,OPCONTENT,USERTYPE,REQUESTCODE,HOSPSAMPLEID,HOSPSAMPLENUMBER)
+        VALUES(#Dictuserid#,#Usercode#,#Username#,#Optype#,#Createdate:DateTime:1/1/0001 12:00:00 AM#,#Opcontent#,#Usertype#,#Requestcode#,#Hospsampleid#,#Hospsamplenumber#)
+      </insert>
+      <update id="UpdateDAOperationlog" parameterClass="DAOperationlog">
+        UPDATE DA_OPERATIONLOG
+        SET OPERATIONLOGID=#Operationlogid#,DICTUSERID=#Dictuserid#,USERCODE=#Usercode#,USERNAME=#Username#,OPTYPE=#Optype#,CREATEDATE=#Createdate#,OPCONTENT=#Opcontent#,USERTYPE=#Usertype#,REQUESTCODE=#Requestcode#,HOSPSAMPLEID=#Hospsampleid#,HOSPSAMPLENUMBER=#Hospsamplenumber#
+        WHERE OPERATIONLOGID = #Operationlogid#
+      </update>
+      <delete id="DeleteDAOperationlog" parameterClass="string">
+        DELETE FROM DA_OPERATIONLOG
+        WHERE OPERATIONLOGID = #value#
+      </delete>
+    </statements>
+</sqlMap>

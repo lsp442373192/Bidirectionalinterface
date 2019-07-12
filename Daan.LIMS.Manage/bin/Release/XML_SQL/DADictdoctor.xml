@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="Daan.Interface.Entity" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ibatis.apache.org/mapping">
+  <alias>
+    <typeAlias alias="DADictdoctor"  type="Daan.Interface.Entity.DADictdoctor,Daan.Interface.Entity" />
+  </alias>
+  <resultMaps>
+    <resultMap id="DictdoctorResult" class="Daan.Interface.Entity.DADictdoctor">
+      <result property="Dictdoctorid" column="DICTDOCTORID" />
+      <result property="Fastcode" column="FASTCODE" />
+      <result property="Doctorcode" column="DOCTORCODE" />
+      <result property="Doctorname" column="DOCTORNAME" />
+      <result property="Active" column="ACTIVE" />
+    
+    </resultMap>
+  </resultMaps>
+  <statements>
+
+    <select id="SelectDictdoctor" parameterClass="string" resultClass="DADictdoctor">
+      SELECT DICTDOCTORID AS Dictdoctorid,FASTCODE AS Fastcode,DOCTORCODE AS Doctorcode,DOCTORNAME AS Doctorname,ACTIVE AS Active
+      FROM da_dictdoctor WHERE 1 = 1
+      <isNotEmpty prepend="and" property="Dictdoctorid">
+        Dictdoctorid = #Dictdoctorid#
+      </isNotEmpty>
+      <isNotEmpty prepend="and" property="Doctorname">
+        Doctorname = #Doctorname#
+      </isNotEmpty>
+    </select>
+    <insert id="InsertDictdoctor" parameterClass="DADictdoctor">
+      INSERT INTO da_dictdoctor
+      (FASTCODE,DOCTORCODE,DOCTORNAME,ACTIVE)
+      VALUES(#Fastcode#,#Doctorcode#,#Doctorname#,#Active#)
+    </insert>
+    <update id="UpdateDictdoctor" parameterClass="DADictdoctor">
+      UPDATE da_dictdoctor
+      SET FASTCODE=#Fastcode#,DOCTORCODE=#Doctorcode#,DOCTORNAME=#Doctorname#,ACTIVE=#Active#
+      WHERE DICTDOCTORID = #Dictdoctorid#
+    </update>
+    <delete id="DeleteDictdoctor" parameterClass="string">
+      DELETE FROM da_dictdoctor
+      WHERE DICTDOCTORID = #value#
+    </delete>
+  </statements>
+</sqlMap>
